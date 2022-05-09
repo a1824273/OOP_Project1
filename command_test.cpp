@@ -10,6 +10,7 @@ int main()
   string input;
   vector<string> command;
   cout << "Input Command" << endl;
+  system("make test");
   getline(cin, input);
 
   istringstream ss(input);
