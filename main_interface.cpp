@@ -2,5 +2,9 @@
 
 int main()
 {
-  return 0;
+    Interface Manager;
+    Manager.header();
+    Manager.console();
+    //Manager.console();
+    return 0;
 }
