@@ -2,6 +2,7 @@
 
 int main()
 {
+    //House home;
     Interface Manager;
     Manager.header();
     Manager.console();
