@@ -6,6 +6,10 @@ Interface::Interface(/*House * home) :home(home*/)
     /*nocbreak();
     echo();
     initscr();*/
+    //cout << "\033[%dm %3d\033[m" << endl;
+    cout << "\033[2J \033[H";
+
+    //cout << "\u001b[47;1m" << endl;
 }
 Interface::~Interface()
 {
@@ -15,7 +19,10 @@ Interface::~Interface()
 
 void Interface::header()
 {
-    cout << "Virtual Home Automation System" << endl;
+    cout << "\u001b[32;1m";
+    cout << R"(___   _ . ____    _  _ _ ____ ___ _  _ ____ _       ____ _  _ ____ ____ ___    _  _ ____ _  _ ____    ____ _   _ ____ ___ ____ _  _ )" << endl;
+    cout << R"(|  \  | ' [__     |  | | |__/  |  |  | |__| |       [__  |\/| |__| |__/  |     |__| |  | |\/| |___    [__   \_/  [__   |  |___ |\/| )" << endl;
+    cout << R"(|__/ _|   ___]     \/  | |  \  |  |__| |  | |___    ___] |  | |  | |  \  |     |  | |__| |  | |___    ___]   |   ___]  |  |___ |  | )" << endl;
     cout << "Enter commands below" << endl;
     cout << "Type \"help\" for command line help" << endl;
     //getch();
@@ -26,6 +33,7 @@ void Interface::console()
     vector<string> command;
     do
     {
+        cout << "\u001b[0m";
         cout << ">>>";
         command = getCommand();
 
@@ -40,14 +48,20 @@ void Interface::console()
 
 vector<string> Interface::getCommand()
 {
+    //The actual commadn line that is input,
     string input;
+    //a vector of strings, where each word is an individual element
     vector<string> command;
 
-
+    //Gets line entire line from cin and stores it in input
     getline(cin,input);
+    //some magic
     istringstream ss(input);
+
+    //the string that will store the individual pieces and push them into the vector
     string del;
 
+    //reads each word of the input in and spilts it at the delimiter ' '
     while(getline(ss, del, ' '))
     {
       command.push_back(del);
@@ -63,6 +77,7 @@ vector<string> Interface::getCommand()
     }
     ****************/
 
+    //returns the vector of strings
     return command;
 };
 
@@ -78,24 +93,31 @@ bool Interface::runCommand(vector<string> command)
 
     if(command.at(0) == "help") {helpScreen(); return 1;}
     if(command.at(0) == "exit") {return 0;}
-
-    if(command.at(0) == "add") {add(command); return 1;}
+/*
+    if(command.at(0) == "add")  {add(command); return 1;}
     if(command.at(0) == "remove") {}
     if(command.at(0) == "set") {}
 
-
-    else {return 1;}
+*/
+    else {cout << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
 }
 
 void Interface::helpScreen()
 {
+    cout << "\u001b[33;1m" << endl;
+    cout << "*************************************************************************************************************" << endl;
     cout << "Syntax Guide:" << endl;
-    cout << "" << endl;
+    cout << endl;
+    cout << "Here is where the syntax guide as well as examples for the user to follow will be printed" << endl;
+    cout << "e.g. >>>add Light Lamp Bedroom" << endl;
+    cout << "This adds a light called Lamp in the room \"Bedroom\"" << endl;
+    cout << "*************************************************************************************************************" << endl;
+    cout << endl;
 }
 
 Room * Interface::findRoom(string roomName)
 {
-    //Checkes through the list of rooms
+    //Checks through the list of rooms
     for (size_t i = 0; i < home.rooms.size(); i++)
     {
         //the iterator is a pointer to the ith room in the list
@@ -133,7 +155,7 @@ int Interface::add(vector<string> command)
     //Pass first of all a string dictating the type of object
     //Pass second the name of the device to create
     //This will be used to create a device of the required type in the correct room
-    deviceRoom->addInteractable(command.at(1), command.at(2));
+    deviceRoom->add_Interactable(command.at(1), command.at(2));
 }
 
 void Interface::remove(vector<string> command)
