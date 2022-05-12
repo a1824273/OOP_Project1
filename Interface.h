@@ -12,6 +12,17 @@ class Interface
 {
   private:
       //House * home;
+      /*string bannedNames =
+      {
+          "house",
+          "room",
+          "light",
+          "door",
+          "tv",
+          "speaker",
+          "ac"
+
+      };*/
 
   public:
       //COnstructor takes in a pointer to the home with whcih we will operate on
@@ -26,6 +37,11 @@ class Interface
       vector<string> getCommand();
 
       bool runCommand(vector<string> command);
+
+      void helpScreen();
+      void set(vector<string> command);
+      int add(vector<string> command);
+      void remove(vector<string> command);
 };
 
 #endif
