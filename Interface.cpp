@@ -1,6 +1,7 @@
 #include "Interface.h"
 
 
+
 Interface::Interface(/*House * home) :home(home*/)
 {
     /*nocbreak();
@@ -111,6 +112,7 @@ void Interface::helpScreen()
     cout << "Here is where the syntax guide as well as examples for the user to follow will be printed" << endl;
     cout << "e.g. >>>add Light Lamp Bedroom" << endl;
     cout << "This adds a light called Lamp in the room \"Bedroom\"" << endl;
+    cout << "set [device name] [room name] [member] [state]" << endl;
     cout << "*************************************************************************************************************" << endl;
     cout << endl;
 }
@@ -130,12 +132,28 @@ Room * Interface::findRoom(string roomName)
     return NULL
 }
 
+Interactable * Interface::findInteractable(string deviceName)
+{
+    for (size_t i = 0; i < home.rooms.size(); i++)
+    {
+        //the iterator is a pointer to the ith room in the list
+        Room * iterator = &(home.rooms.at(i));
+        //check what the name of this room is and if it is the wanted one
+        //return a pointer to this room
+        if (iterator->name = roomName) {return iterator;}
+    }
+
+    return NULL
+}
+
 
 Interactable * Interface findDevice(string deviceName, Room room) {}
 
 int Interface::add(vector<string> command)
 {
     if(command.size() < 3) {cout << "Insufficient Command Length" << endl; return 0;}
+
+    //Add Room
     if(command.at(1) == "room")
     {
         //create a room in the house object with a name input from the command
@@ -148,6 +166,7 @@ int Interface::add(vector<string> command)
     //now need to change the command check length as all other commands are bigger
     if(command.size() < 3) {cout << "Insufficient Command Length" << endl; return 0;}
 
+    //Add Device
     //gets a pointer to the rooms we want to operate in
     Room * deviceRoom = findRoom(command.at(3));
     if(deviceRoom == NULL) {cout << "No rooms of name: " << command.at(3) << endl; return 0;}
@@ -165,5 +184,37 @@ void Interface::remove(vector<string> command)
 
 void Interface::set(vector<string> command)
 {
+    /*
+    Command structure
+    0: set
+    1: interactable name
+    2: member to alters
+    3: status to set it to
+    */
 
+    const string interactable_name = command.at(0);
+    const string interactable_room = command.at(1);
+    const string member = command.at(2);
+    const string status = command.at(3);
+
+
+
+    //find the room,s to work in
+    Room * deviceRoom = findRoom(interactable_room)
+    //find the interactable to work on
+    Interactable * interactable_to_change = findInteractable(interactable_name);
+
+    //Lights
+    if(typeid(*interactable_to_change).name() == "Lights")
+    {
+        if(member == "colour") {interactable_to_change->set_colour(status);}
+        if(member == "speed") {set_AC_speed(status)}
+    }
+
+    //AC changes
+    if(typeid(*interactable_to_change).name() == "AC_Unit")
+    {
+        if(member == "temp") {interactable_to_change->set_AC_temp(status);}
+        if(member == "speed") {set_AC_speed(status)}
+    }
 }

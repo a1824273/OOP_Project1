@@ -6,6 +6,9 @@
 #include <vector>
 #include <sstream>
 
+#include "Interactable.h"
+#include "AC_Unit.h"
+
 using namespace std;
 
 class Interface
@@ -42,6 +45,9 @@ class Interface
       void set(vector<string> command);
       int add(vector<string> command);
       void remove(vector<string> command);
+
+      Room * findRoom(string roomName);
+      Interactable * findInteractable(string deviceName);
 };
 
 #endif
