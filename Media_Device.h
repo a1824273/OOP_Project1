@@ -9,12 +9,14 @@ private:
     std::string the_media_name;
     bool the_media_state;
     int the_media_volume_level;
+    std::string current_channel;
+
 public:
     //default media device constructor
     Media_Device();
 
     //media device with user input
-    Media_Device(std::string media_name, bool media_state, int media_volume_level);
+    Media_Device(std::string media_name, bool media_state, int media_volume_level, std::string new_channel);
 
     //setting media name
     void set_media_name(std::string media_name);
@@ -34,6 +36,12 @@ public:
 
     //getting media volume level
     int get_media_volume();
+
+    //changing the channel
+    void set_current_channel(std::string new_channel);
+
+    //getting the current channel
+    std::string get_current_channel();
 
     //default destructor
     ~Media_Device();

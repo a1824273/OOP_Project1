@@ -7,9 +7,10 @@ Media_Device::Media_Device(){
     the_media_name = "No media";
     the_media_state = false;
     the_media_volume_level = 0;
+    current_channel = "ABC3";
 }
 
-Media_Device::Media_Device(std::string media_name, bool media_state, int media_volume_level){
+Media_Device::Media_Device(std::string media_name, bool media_state, int media_volume_level, std::string new_channel){
     //media device with user input
     the_media_name = media_name;
     the_media_state = media_state;
@@ -19,6 +20,7 @@ Media_Device::Media_Device(std::string media_name, bool media_state, int media_v
     else{
         the_media_volume_level = 0;
     }
+    current_channel = new_channel;
     
 }
 
@@ -57,6 +59,14 @@ void Media_Device::set_media_volume(int media_volume_level){
 int Media_Device::get_media_volume(){
     //getting media volume level
     return the_media_volume_level;
+}
+
+void Media_Device::set_current_channel(std::string new_channel){
+    current_channel = new_channel;
+}
+
+std::string Media_Device::get_current_channel(){
+    return current_channel;
 }
 
 Media_Device::~Media_Device(){
