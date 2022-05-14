@@ -34,7 +34,7 @@ std::string Media_Device::get_media_name(){
     return the_media_name;
 }
 
-void Media_Device::set_state(bool media_state){
+void Media_Device::set_media_state(bool media_state){
     //settin media state
     the_media_state = media_state;
 }

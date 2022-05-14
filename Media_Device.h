@@ -5,7 +5,7 @@
 #include <string>
 
 class Media_Device{
-private:
+protected:
     std::string the_media_name;
     bool the_media_state;
     int the_media_volume_level;
@@ -25,20 +25,20 @@ public:
     std::string get_media_name();
 
     //settin media state
-    void set_state(bool media_state);
+    void set_media_state(bool media_state);
 
     //getting media state
     bool get_media_state();
 
     //setting media volume level
     //volume is 0-100
-    void set_media_volume(int media_volume_level);
+    virtual void set_media_volume(int media_volume_level);
 
     //getting media volume level
     int get_media_volume();
 
     //changing the channel
-    void set_current_channel(std::string new_channel);
+    virtual void set_current_channel(std::string new_channel);
 
     //getting the current channel
     std::string get_current_channel();
