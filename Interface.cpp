@@ -126,28 +126,26 @@ Room * Interface::findRoom(string roomName)
         Room * iterator = &(home.rooms.at(i));
         //check what the name of this room is and if it is the wanted one
         //return a pointer to this room
-        if (iterator->name = roomName) {return iterator;}
+        if (iterator->room_name == roomName) {return iterator;}
     }
 
-    return NULL
+    return NULL;
 }
 
-Interactable * Interface::findInteractable(string deviceName)
+Interactable * Interface::findInteractable(string deviceName, Room * roomToLookIn)
 {
-    for (size_t i = 0; i < home.rooms.size(); i++)
+    for (size_t i = 0; i < home.roomToLookIn->list.size(); i++)
     {
         //the iterator is a pointer to the ith room in the list
-        Room * iterator = &(home.rooms.at(i));
+        Interactable * iterator = &(home.roomToLookIn->list->at(i));
         //check what the name of this room is and if it is the wanted one
         //return a pointer to this room
-        if (iterator->name = roomName) {return iterator;}
+        if (iterator->get_name() == deviceName) {return iterator;}
     }
 
-    return NULL
+    return NULL;
 }
 
-
-Interactable * Interface findDevice(string deviceName, Room room) {}
 
 int Interface::add(vector<string> command)
 {
@@ -174,7 +172,7 @@ int Interface::add(vector<string> command)
     //Pass first of all a string dictating the type of object
     //Pass second the name of the device to create
     //This will be used to create a device of the required type in the correct room
-    deviceRoom->add_Interactable(command.at(1), command.at(2));
+    deviceRoom->add_interactable(command.at(1), command.at(2));
 }
 
 void Interface::remove(vector<string> command)
@@ -200,21 +198,51 @@ void Interface::set(vector<string> command)
 
 
     //find the room,s to work in
-    Room * deviceRoom = findRoom(interactable_room)
+    Room * deviceRoom = findRoom(interactable_room);
     //find the interactable to work on
-    Interactable * interactable_to_change = findInteractable(interactable_name);
+    Interactable * interactable_to_change = findInteractable(interactable_name, deviceRoom);
+
+
+    //handles universal on/off functions
+    if(member == "onoff") {interactable_to_change->set_state(stoi(status));}
+    if(member == "name") {interactable_to_change->set_name(status);}
 
     //Lights
     if(typeid(*interactable_to_change).name() == "Lights")
     {
-        if(member == "colour") {interactable_to_change->set_colour(status);}
-        if(member == "speed") {set_AC_speed(status)}
+        Lights* actor = dynamic_cast<Lights*>(interactable_to_change);
+        if(member == "colour") {actor->set_colour(status);}
     }
+
+
+    /*
+    if(typeid(*interactable_to_change).name() == "Door")
+    {
+        Door * actor = dynamic_cast<Door*>(interactable_to_change);
+        if(member == "lock") {actor->set_lock(status);}
+        if(member == "open") {actor->set_state(status)}
+    }*/
 
     //AC changes
     if(typeid(*interactable_to_change).name() == "AC_Unit")
     {
-        if(member == "temp") {interactable_to_change->set_AC_temp(status);}
-        if(member == "speed") {set_AC_speed(status)}
+        AC_Unit * actor = dynamic_cast<AC_Unit*>(interactable_to_change);
+        if(member == "temp") {actor->set_AC_temp(any_cast<float>(status));}
+        if(member == "speed") {actor->set_AC_speed(any_cast<int>(status));}
+    }
+
+    if(typeid(*interactable_to_change).name() == "Smart_Speaker")
+    {
+        Smart_Speaker * actor = dynamic_cast<Smart_Speaker*>(interactable_to_change);
+        if(member == "volume") {actor->set_media_volume(any_cast<int>(status));}
+        if(member == "channel") {actor->set_current_channel(status);}
+    }
+
+    if(typeid(*interactable_to_change).name() == "Smart_Television")
+    {
+        Smart_Television * actor = dynamic_cast<Smart_Television*>(interactable_to_change);
+        if(member == "volume") {actor->set_media_volume(any_cast<int>(status));}
+        if(member == "channel") {actor->set_current_channel(status);}
+        if(member == "brightness") {actor->set_brightness_level(any_cast<int>(status));}
     }
 }

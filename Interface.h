@@ -5,9 +5,18 @@
 #include <ncurses.h>
 #include <vector>
 #include <sstream>
+#include <any>
+#include <utility>
 
+
+#include "Room.h"
 #include "Interactable.h"
+
 #include "AC_Unit.h"
+#include "Lights.h"
+#include "Media_Device.h"
+#include "Smart_Television.h"
+#include "Smart_Speaker.h"
 
 using namespace std;
 
@@ -47,7 +56,7 @@ class Interface
       void remove(vector<string> command);
 
       Room * findRoom(string roomName);
-      Interactable * findInteractable(string deviceName);
+      Interactable * findInteractable(string deviceName, Room * roomToLookIn);
 };
 
 #endif

@@ -8,8 +8,8 @@
 
 class Room {
 
-    private:
-        std::string room_name;      //Name of the Room 
+    public:
+        std::string room_name;      //Name of the Room
         Interactable* devices;      //Devices inside of the room
         int num_devices;            //Total number of interactables currently inside the room;
         int capacity;               //Total number of interactables that can occupy one room
