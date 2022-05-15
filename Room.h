@@ -13,7 +13,7 @@ class Room {
         Interactable* devices;      //Devices inside of the room
         int num_devices;            //Total number of interactables currently inside the room;
         int capacity;               //Total number of interactables that can occupy one room
-        std::vector<Interactable> *list = new std::vector<Interactable>;
+        std::vector<Interactable> *interactables; // = new std::vector<Interactable>;
 
     public:
     //Default Constructor
@@ -22,7 +22,13 @@ class Room {
         Room(std::string name, int capacity);
 
     //add_interactable will create an interactable with given type and name, and then add it to the current room.
-        Interactable* add_interactable(std::string interactable_type, std::string interactable_name);
+        void add_interactable(std::string interactable_type, std::string interactable_name);
+
+    //remove_interactable will remove and interactable in the current room given the type and name.
+        void remove_interactable(std::string interactable_type, std::string interactable_name);
+
+    //list_interactables will return the list of interactables in a current room
+        std::vector<Interactable> list_interactables();
 
     //Default Destructor
         ~Room();
