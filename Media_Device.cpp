@@ -4,9 +4,9 @@
 
 Media_Device::Media_Device(){
     //default media device constructor
-    the_media_state = false;
-    the_media_volume_level = 0;
-    current_channel = "ABC3";
+    the_media_state = false;        //states if the media device is on or off (on is true)
+    the_media_volume_level = 0;     //current volume of media device
+    current_channel = "ABC3";       //current channel of media device
 }
 
 Media_Device::Media_Device(bool media_state, int media_volume_level, std::string new_channel){
