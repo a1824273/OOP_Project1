@@ -246,7 +246,7 @@ void Interface::set(vector<string> command)
     //handles universal on/off functions
     if(member == "onoff") {interactable_to_change->set_state(stoi(status));}
     if(member == "name") {interactable_to_change->set_name(status);}
-
+/*
     //Lights
     if(typeid(*interactable_to_change).name() == "Lights")
     {
@@ -284,5 +284,5 @@ void Interface::set(vector<string> command)
         if(member == "volume") {actor->set_media_volume(any_cast<int>(status));}
         if(member == "channel") {actor->set_current_channel(status);}
         if(member == "brightness") {actor->set_brightness_level(any_cast<int>(status));}
-    }
+    }*/
 }
