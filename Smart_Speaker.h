@@ -9,12 +9,11 @@
 class Smart_Speaker: public Media_Device{
 private:
     //inherited from the parent class (media device)
-    int smart_speaker_volume;
-    std::string the_smart_speaker_name;
-    bool the_smart_speaker_state;
-    std::string current_speaker_channel;
+    int smart_speaker_volume;                   //the volume of the smart speaker
+    bool the_smart_speaker_state;               //states if the smart speaker is on or off (on is true)
+    std::string current_speaker_channel;        //states the current channel of the speaker
     //specific to this class
-    std::string current_audio;
+    std::string current_audio;                  //states the current audio playing in this speaker
 
 public:
     //default constructor for smart speaker
@@ -42,6 +41,9 @@ public:
 
     //getting the current audio
     std::string get_current_audio();
+
+    //printing all current infomation of the smart speaker
+    void print();
 
     //default destructor
     ~Smart_Speaker();

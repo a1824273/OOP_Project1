@@ -6,10 +6,10 @@
 
 Smart_Speaker::Smart_Speaker(){
     //default constructor for smart speaker
-    the_media_state = false;
-    current_speaker_channel = "No_signal";
-    smart_speaker_volume = 3;
-    current_audio = "nothing playing";
+    the_media_state = false;                                //states if the smart speaker is on or off (on is true)
+    current_speaker_channel = "No_signal";                  //states the current channel of the speaker
+    smart_speaker_volume = 3;                               //the volume of the smart speaker
+    current_audio = "nothing playing";                      //states the current audio playing in this speaker
     if (the_media_state == true){
         std::cout << "The speaker is on!" << std::endl;
     }
@@ -101,6 +101,19 @@ void Smart_Speaker::set_current_audio(std::string current_speaker_audio){
 std::string Smart_Speaker::get_current_audio(){
     //getting the current audio
     return current_audio;
+}
+
+void Smart_Speaker::print(){
+    //printing all current infomation of the smart speaker
+    if (the_media_state == true){
+        std::cout << "The speaker is on!" << std::endl;
+    }
+    else if(the_media_state == false){
+        std::cout << "The speaker is off!" << std::endl;
+    }
+    std::cout << "The speaker is playing" << current_speaker_channel << std::endl;
+    std::cout << "The speaker volume: " << smart_speaker_volume << std::endl;
+    std::cout << "The current audio is: " << current_audio << std::endl;
 }
 
 Smart_Speaker::~Smart_Speaker(){
