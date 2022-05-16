@@ -7,6 +7,8 @@
 #include <vector>
 #include "Home.h"
 
+class Home;
+
 class Room{
 
     public:

@@ -6,12 +6,14 @@
 #include <vector>
 #include "Room.h"
 
+class Room;
+
 class Home{
 
     protected:
         std::string home_name;
         int numRooms;
-        std::vector<Room> *rooms; // = new std::vector<Room>;
+        std::vector<Room*> *rooms; // = new std::vector<Room>;
 
     public:
         //Default Constructor
@@ -28,7 +30,7 @@ class Home{
 
         //list_rooms Function will return the list of rooms in the house
         std::vector<Room> list_rooms();
-        
+
         //Default Destructor
         ~Home();
 
