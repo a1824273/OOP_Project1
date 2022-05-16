@@ -4,12 +4,12 @@
 #include <iostream>
 #include <string>
 #include "Media_Device.h"
+#include "Interactable.h"
 
 class Smart_Television: public Media_Device {
 private:
     //inheritad from the parent class (media device)
     int smart_television_volume;
-    std::string the_smart_television_name;
     bool the_smart_television_state;
     std::string current_televsion_channel;
     //specific to this class
@@ -20,7 +20,7 @@ public:
     Smart_Television();
 
     //media device constructor with user input
-    Smart_Television(/*std::string tv_name, bool tv_state, int tv_volume_level, std::string new_tv_channel, */int tv_brightness);
+    Smart_Television(int tv_brightness);
 
     //inherited functions
     //changing the televison volume, between 0-100 inclusive

@@ -2,27 +2,35 @@
 #include <string>
 #include "Media_Device.h"
 #include "Smart_Television.h"
+#include "Interactable.h"
 
 
 Smart_Television::Smart_Television(){
     //default media constructor
-    the_smart_television_name = "TV1";
     the_media_state = false;
-    current_televsion_channel = "No signal";
+    current_television_channel = "No signal";
     smart_television_volume = 3;
     brightness_level = 0;
+    if (the_media_state == true){
+        std::cout << "The smart television is on!" << std::endl;
+    }
+    else if(the_media_state == false){
+        std::cout << "The smart television is off!" << std::endl;
+    }
+    std::cout << "The current television channel is: " << current_television_channel << std::endl;
+    std::cout << "The television is playing at volume " << smart_television_volume << std::endl;
+    std::cout << "The brightness of the television is: " << brightness_level << std::endl;
 }
 
 Smart_Television::Smart_Television(int tv_brightness){
     //media device constructor with user input
-    the_smart_television_name = the_media_name;
     if (the_media_state == false){
-        current_televsion_channel = "No signal";
+        current_television_channel = "No signal";
         smart_television_volume = 0;
         brightness_level = 0;
     }
     else{
-        current_televsion_channel = current_channel;
+        current_television_channel = current_channel;
 
         //tv volume is between 0 and 100 inclusive
         if (the_media_volume_level >= 0 && the_media_volume_level <= 100){
@@ -38,8 +46,16 @@ Smart_Television::Smart_Television(int tv_brightness){
         else {
             brightness_level = 0;
         }
-
     }
+    if (the_media_state == true){
+        std::cout << "The smart television is on!" << std::endl;
+    }
+    else if(the_media_state == false){
+        std::cout << "The smart television is off!" << std::endl;
+    }
+    std::cout << "The current television channel is: " << current_television_channel << std::endl;
+    std::cout << "The television is playing at volume " << smart_television_volume << std::endl;
+    std::cout << "The brightness of the television is: " << brightness_level << std::endl;
 }
 
 //inherited functions
@@ -51,6 +67,7 @@ void Smart_Television::set_media_volume(int media_volume_level){
     else{
         smart_television_volume = 0;
     }
+    std::cout << "The television is playing at volume " << smart_television_volume << std::endl;
 }
 
 int Smart_Television::get_television_volume(){
@@ -67,16 +84,16 @@ void Smart_Television::set_current_channel(std::string new_channel){
     else{
         current_televsion_channel = "No signal";
     }
+    std::cout << "The current television channel is: " << current_television_channel << std::endl;
 }
 
 std::string Smart_Television::get_current_channel(){
     //getting the current channel
     return current_televsion_channel;
-
 }
 
 
-//function specific tp the smart television class
+//function specific to the smart television class
 
 void Smart_Television::set_brightness_level(int tv_brightness){
     //changing the brigthness of the televison
@@ -86,6 +103,7 @@ void Smart_Television::set_brightness_level(int tv_brightness){
     else{
         std::cout << "Brightness level outside of 0 to 5 range." << std::endl;
     }
+    std::cout << "The brightness of the television is: " << brightness_level << std::endl;
 }
 
 int Smart_Television::get_brightness_level(){
