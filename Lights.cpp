@@ -20,7 +20,7 @@ Lights::Lights(std::string light_colour, bool state_of_light){
     //making a light variable will the light name, light colour and on off state
     thee_light_colour = light_colour;
     light_on_state = state_of_light;
-    std::cout << "The lights colour is: " << thee_light_colour << "." << std::end;
+    std::cout << "The lights colour is: " << thee_light_colour << "." << std::endl;
     if (light_on_state == true){
         std::cout << "The light is on." << std::endl;
     }
