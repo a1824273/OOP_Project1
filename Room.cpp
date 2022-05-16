@@ -45,35 +45,35 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
 
     //Creating Light Object and adding it to the list of interactables
     if(interactable_type == "Lights" || interactable_type == "Light" ){
-        Lights *CreatedLight = new Lights();
+        Lights *CreatedLight = new Lights;
         CreatedLight->set_name(interactable_name);
         interactables->push_back(CreatedLight);
     }
      
     //Creating Smart Television Object and adding it to the list of interactables
     if(interactable_type == "Smart Television" || interactable_type == "SmartTelevision" || interactable_type == "Smart_Television"){
-        Smart_Television *CreatedSmart_Television = new Smart_Television();
+        Smart_Television *CreatedSmart_Television = new Smart_Television;
         CreatedSmart_Television->set_name(interactable_name);
         interactables->push_back(CreatedSmart_Television);
     }
 
     //Creating Smart_Speaker Object and adding it to the list of interactables
     if(interactable_type == "Smart Speaker" || interactable_type == "SmartSpeaker" || interactable_type == "Smart_Speaker"){
-        Smart_Speaker *CreatedSmart_Speaker = new Smart_Speaker();
+        Smart_Speaker *CreatedSmart_Speaker = new Smart_Speaker;
         CreatedSmart_Speaker->set_name(interactable_name);
         interactables->push_back(CreatedSmart_Speaker);
     }
 
     //Creating Smart_Speaker Object and adding it to the list of interactables
     if(interactable_type == "AC Unit" || interactable_type == "ACUnit" || interactable_type == "AC"){
-        AC_Unit *CreatedAC = new AC_Unit();
+        AC_Unit *CreatedAC = new AC_Unit;
         CreatedAC->set_name(interactable_name);
         interactables->push_back(CreatedAC);
     }
 
     //Creating Smart_Speaker Object and adding it to the list of interactables
     if(interactable_type == "Door" || interactable_type == "door"){
-        Door *CreatedDoor = new Door();
+        Door *CreatedDoor = new Door;
         CreatedDoor->set_name(interactable_name);
         interactables->push_back(CreatedDoor);
     }

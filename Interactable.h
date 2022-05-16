@@ -31,13 +31,13 @@ class Interactable {
         bool get_state();
 
     //toggle_state will toggle the state of the interactable object.
-        virtual void toggle_state();
+        //virtual void toggle_state();
 
     //get_room will return the room that interactable is in
         //void get_room();
 
     //virtual print function
-        virtual void print();
+        //virtual void print();
 
     //Default destructor
         ~Interactable();

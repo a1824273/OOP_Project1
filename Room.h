@@ -21,7 +21,7 @@ class Room{
     public:
     //Default Constructor
         Room();
-        
+
     //Variable Constructor that takes name and total number of interactables that can occupy the room;
         Room(std::string name, int capacity);
 
@@ -41,7 +41,7 @@ class Room{
         std::vector<Interactable> list_interactables();
 
     //print_interactables will print the list of interactables in a current room
-        void print();
+        //void print();
 
     //Default Destructor
         ~Room();
