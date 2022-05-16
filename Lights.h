@@ -23,10 +23,10 @@ public:
     bool get_state();
 
     //change the colour of the light
-    void set_colour(string colour);
+    void set_colour(std::string colour);
 
     //get the colour of the light
-    string get_colour();
+    std::string get_colour();
     
     //destructor
     ~Lights();

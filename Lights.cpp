@@ -7,7 +7,7 @@ Lights::Lights(){
     //creating a default light object with a light name, light colour and status of the light
     thee_light_colour = "white";
     light_on_state = true;
-    std::cout << "The lights colour is: " << thee_light_colour << "." << std::end;
+    std::cout << "The lights colour is: " << thee_light_colour << "." << std::endl;
     if (light_on_state == true){
         std::cout << "The light is on." << std::endl;
     }
@@ -44,7 +44,7 @@ bool Lights::get_state(){
     }
     return light_on_state;
 }
-void Lights::set_colour(string colour){
+void Lights::set_colour(std::string colour){
     //change the colour of the light
     thee_light_colour = colour;
 }
