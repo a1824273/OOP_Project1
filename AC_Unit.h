@@ -3,10 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include "Interactable.h"
 
 class AC_Unit: public Interactable{
 private:
-    std::string AC_unit_name;
     float AC_temperature;
     int current_fan_speed;
     bool AC_on_or_off;
@@ -15,13 +15,7 @@ public:
     AC_Unit();
         
     //AC_Unit constructor with user input
-    AC_Unit(std::string AC_name, float original_temp, int AC_fan_speed, bool AC_on);
-
-    //setting AC Name
-    void set_name(std::string AC_name);
-
-    //getting AC Name
-    std::string get_name();
+    AC_Unit(float original_temp, int AC_fan_speed, bool AC_on);
 
     //setting AC state
     void set_state(bool AC_on);

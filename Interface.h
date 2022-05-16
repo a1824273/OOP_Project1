@@ -23,7 +23,7 @@ using namespace std;
 class Interface
 {
   private:
-      //House * home;
+      Home * home;
       /*string bannedNames =
       {
           "house",
@@ -38,7 +38,7 @@ class Interface
 
   public:
       //COnstructor takes in a pointer to the home with whcih we will operate on
-      Interface(/*House * home*/);
+      Interface(Home * home);
       ~Interface();
       //Clears the screen and produces the header for the screen
       void header();

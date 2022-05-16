@@ -5,8 +5,8 @@
 
 int main()
 {
-    //House home;
-    Interface Manager;
+    Home home = new Home;
+    Interface Manager(home);
     Manager.header();
     Manager.console();
     //Manager.console();
