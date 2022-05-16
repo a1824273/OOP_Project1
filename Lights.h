@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Interactable.h"
 
 using namespace std;
 
