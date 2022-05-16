@@ -11,11 +11,12 @@ class Room;
 class Home{
 
     protected:
-        std::string home_name;
-        int numRooms;
-        std::vector<Room*> *rooms; // = new std::vector<Room>;
+        std::string home_name;      //Home name
+        int numRooms;               //Current number of rooms
 
     public:
+        std::vector<Room*> *rooms;  //List of rooms
+
         //Default Constructor
         Home();
 
