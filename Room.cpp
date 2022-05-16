@@ -29,12 +29,12 @@ Room::Room(std::string name, int max_capacity){
     
 };
 
-//get_name function
+//get_name function will return room name
 std::string Room::get_name(){
     return room_name;
 };
 
-//set_name function
+//set_name function will set room name
 void Room::set_name(std::string name){
     room_name = name;
 
@@ -53,14 +53,14 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
     //Creating Smart Television Object and adding it to the list of interactables
     if(interactable_type == "Smart Television" || interactable_type == "SmartTelevision" || interactable_type == "Smart_Television"){
         Smart_Television *CreatedSmart_Television = new Smart_Television();
-        CreatedSmart_Television->set_media_name(interactable_name);
+        CreatedSmart_Television->set_name(interactable_name);
         interactables->push_back(CreatedSmart_Television);
     }
 
     //Creating Smart_Speaker Object and adding it to the list of interactables
     if(interactable_type == "Smart Speaker" || interactable_type == "SmartSpeaker" || interactable_type == "Smart_Speaker"){
         Smart_Speaker *CreatedSmart_Speaker = new Smart_Speaker();
-        CreatedSmart_Speaker->set_media_name(interactable_name);
+        CreatedSmart_Speaker->set_name(interactable_name);
         interactables->push_back(CreatedSmart_Speaker);
     }
 
