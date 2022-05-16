@@ -13,6 +13,7 @@
 #include "Interactable.h"
 
 #include "AC_Unit.h"
+#include "Door.h"
 #include "Lights.h"
 #include "Media_Device.h"
 #include "Smart_Television.h"

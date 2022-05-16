@@ -216,12 +216,12 @@ void Interface::set(vector<string> command)
     }
 
 
-    
+
     if(typeid(*interactable_to_change).name() == "Door")
     {
         Door * actor = dynamic_cast<Door*>(interactable_to_change);
-        if(member == "lock") {actor->set_lock(status);}
-        if(member == "open") {actor->set_state(status)}
+        if(member == "lock") {actor->set_state(any_cast<bool>(status));}
+        //if(member == "open") {actor->set_state(status)}
     }
 
     //AC changes
