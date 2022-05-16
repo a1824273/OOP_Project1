@@ -16,7 +16,7 @@ Interactable::Interactable(std::string new_name, bool new_state){
 
 };
 
-void Interactable::set_name(std::string new_name){
+virtual void Interactable::set_name(std::string new_name){
     interactable_name = new_name;
 
 };
@@ -26,7 +26,7 @@ std::string Interactable::get_name(){
 
 };
 
-void Interactable::set_state(bool new_state){
+virtual void Interactable::set_state(bool new_state){
     state = new_state;
 
 };
