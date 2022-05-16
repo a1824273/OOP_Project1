@@ -6,13 +6,14 @@
 #include "Smart_Speaker.h"
 #include "Smart_Television.h"
 #include "Media_Device.h"
+#include "AC_Unit.h"
 
 //Default Constructor
 Room::Room(){
 
     room_name = "N/A";                      //setting Room Name to N/A
     capacity = 0;                           //setting Capacity to 0
-    interactables = new std::vector<Interactable>;   //Initialising the List Vector
+    interactables = new std::vector<Interactable*>;   //Initialising the List Vector
     interactables->clear();                          //Clearing the List Vector
 
 };
@@ -22,7 +23,7 @@ Room::Room(std::string name, int max_capacity){
 
     room_name = name;
     capacity = max_capacity;
-    interactables = new std::vector<Interactable>;
+    interactables = new std::vector<Interactable*>;
     interactables->clear();
     
 };
@@ -51,12 +52,19 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
         interactables->push_back(CreatedSmart_Speaker);
     }
 
+    //Creating Smart_Speaker Object and adding it to the list of interactables
+    if(interactable_type == "AC Unit" || interactable_type == "ACUnit" || interactable_type == "AC"){
+        AC_Unit *CreatedAC = new AC_Unit();
+        CreatedAC->set_name(interactable_name);
+        interactables->push_back(CreatedAC);
+    }
+
 
 
 };
 
 
 Room::~Room(){
-    delete [] list;
+    delete [] interactables;
 }
 
