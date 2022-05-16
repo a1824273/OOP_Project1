@@ -7,7 +7,7 @@
 
 class Door: public Interactable{
 private:
-    bool locked;
+    bool locked;            //states if the door is locked or unlocked (locked is true)
 public:
     //default parameter
     Door();
@@ -20,6 +20,9 @@ public:
 
     //get door status
     bool get_door_state();
+
+    //printing all current infomation of the door
+    void print();
 
     ~Door();
 };
