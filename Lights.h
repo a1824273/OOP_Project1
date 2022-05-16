@@ -7,8 +7,8 @@
 
 class Lights: public Interactable{
 private:
-    std::string thee_light_colour;
-    bool light_on_state;
+    std::string the_light_colour;       //the colour of the light
+    bool light_on_state;                //shows whether or not the light is on (on is true)
 public:
     //creating a default light object with a light name, light colour and status of the light
     Lights();
@@ -27,6 +27,9 @@ public:
 
     //get the colour of the light
     std::string get_colour();
+
+    //printing all current infomation of the light
+    void print();
     
     //destructor
     ~Lights();
