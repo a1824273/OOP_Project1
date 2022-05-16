@@ -79,17 +79,17 @@ int Smart_Television::get_television_volume(){
 void Smart_Television::set_current_channel(std::string new_channel){
     //changing the current channel
     if (the_media_state == true){
-        current_televsion_channel = new_channel;
+        current_television_channel = new_channel;
     }
     else{
-        current_televsion_channel = "No signal";
+        current_television_channel = "No signal";
     }
     std::cout << "The current television channel is: " << current_television_channel << std::endl;
 }
 
 std::string Smart_Television::get_current_channel(){
     //getting the current channel
-    return current_televsion_channel;
+    return current_television_channel;
 }
 
 
