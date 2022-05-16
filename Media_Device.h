@@ -7,7 +7,6 @@
 
 class Media_Device: public Interactable {
 protected:
-    std::string the_media_name;
     bool the_media_state;
     int the_media_volume_level;
     std::string current_channel;
@@ -17,13 +16,7 @@ public:
     Media_Device();
 
     //media device with user input
-    Media_Device(std::string media_name, bool media_state, int media_volume_level, std::string new_channel);
-
-    //setting media name
-    void set_media_name(std::string media_name);
-
-    //get media name
-    std::string get_media_name();
+    Media_Device(bool media_state, int media_volume_level, std::string new_channel);
 
     //settin media state
     void set_media_state(bool media_state);

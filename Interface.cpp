@@ -121,10 +121,10 @@ void Interface::helpScreen()
 Room * Interface::findRoom(string roomName)
 {
     //Checks through the list of rooms
-    for (size_t i = 0; i < home->rooms.size(); i++)
+    for (size_t i = 0; i < home->rooms->size(); i++)
     {
         //the iterator is a pointer to the ith room in the list
-        Room * iterator = &(home->rooms.at(i));
+        Room * iterator = (home->rooms->at(i));
         //check what the name of this room is and if it is the wanted one
         //return a pointer to this room
         if (iterator->room_name == roomName) {return iterator;}
@@ -135,10 +135,10 @@ Room * Interface::findRoom(string roomName)
 
 Interactable * Interface::findInteractable(string deviceName, Room * roomToLookIn)
 {
-    for (size_t i = 0; i < home.roomToLookIn->list.size(); i++)
+    for (size_t i = 0; i < roomToLookIn->interactables->size(); i++)
     {
         //the iterator is a pointer to the ith room in the list
-        Interactable * iterator = &(home->roomToLookIn->list->at(i));
+        Interactable * iterator = (roomToLookIn->interactables->at(i));
         //check what the name of this room is and if it is the wanted one
         //return a pointer to this room
         if (iterator->get_name() == deviceName) {return iterator;}
@@ -157,7 +157,7 @@ int Interface::add(vector<string> command)
     {
         //create a room in the house object with a name input from the command
         //command.at(2) is a string and a room will be created with that name
-        home->addRoom(command.at(2));
+        home->add_room(command.at(2));
         return 0;
         //exit this function as the command has been completed
     }
@@ -216,13 +216,13 @@ void Interface::set(vector<string> command)
     }
 
 
-    /*
+
     if(typeid(*interactable_to_change).name() == "Door")
     {
         Door * actor = dynamic_cast<Door*>(interactable_to_change);
-        if(member == "lock") {actor->set_lock(status);}
-        if(member == "open") {actor->set_state(status)}
-    }*/
+        if(member == "lock") {actor->set_state(any_cast<bool>(status));}
+        //if(member == "open") {actor->set_state(status)}
+    }
 
     //AC changes
     if(typeid(*interactable_to_change).name() == "AC_Unit")

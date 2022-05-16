@@ -32,12 +32,24 @@ AC_Unit::AC_Unit(float original_temp, int AC_fan_speed, bool AC_on){
         current_fan_speed = 0;
     }
     AC_on_or_off = AC_on;
+    if (AC_on == true){
+        std::cout << "The AC is now on!" << std::endl;
+    }
+    else {
+        std::cout << "The AC is now off!" <<  std::endl;
+    }
 }
 
 
 void AC_Unit::set_state(bool AC_on){
     //setting AC state
-    AC_on_or_off = AC_on;   
+    AC_on_or_off = AC_on;
+    if (AC_on == true){
+        std::cout << "The AC is now on!" << std::endl;
+    }
+    else {
+        std::cout << "The AC is now off!" <<  std::endl;
+    }
 }
 
 bool AC_Unit::get_state(){

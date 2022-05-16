@@ -5,7 +5,7 @@
 
 int main()
 {
-    Home home = new Home;
+    Home * home = new Home;
     Interface Manager(home);
     Manager.header();
     Manager.console();
