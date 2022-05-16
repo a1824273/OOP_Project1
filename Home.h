@@ -24,10 +24,10 @@ class Home{
         Home(std::string new_name);
 
         //get_name function will return name of the home
-        void get_name();
+        std::string get_name();
 
         //set_name function will set name of home
-        std::string set_name(std::string name);
+        void set_name(std::string name);
 
         //add_room Function will add a room to the house
         void add_room(std::string interactable_name);
