@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include "Interactable.h"
 
-class Lights{
+class Lights: public Interactable{
 private:
     std::string thee_light_name;
     std::string thee_light_colour;

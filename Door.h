@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include "Interactable.h"
 
-class Door{
+class Door: public Interactable{
 private:
     std::string the_door_name;
     bool locked;

@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include "Interactable.h"
 
-class Media_Device{
+class Media_Device: public Interactable {
 protected:
     std::string the_media_name;
     bool the_media_state;
