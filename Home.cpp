@@ -1,10 +1,12 @@
 
 #include <iostream>
 #include <vector>
+#include "Room.h"
 #include "Home.h"
 
+
 Home::Home(){
-    home_name = "N/A"
+    home_name = "N/A";
     numRooms = 0;
     rooms = new std::vector<Room>;
     rooms.clear();
@@ -25,17 +27,17 @@ void Home::add_room(Room* roomtoAdd){
 void Home::remove_room(Room* roomtoRemove){
     
     int position;
-    for (int i = 0; i < rooms.size(); i++){
-        if (rooms[i] = roomtoRemove){
+    for (int i = 0; i < rooms->size(); i++){
+        if (rooms[i] == roomtoRemove){
             position = i;
         }
     };
 
-    rooms.erase(position);
+    rooms->erase(position);
 
 };
 
-vector<Room> Home::list_rooms(){
+std::vector<Room> Home::list_rooms(){
     return rooms;
 }
 

@@ -5,15 +5,16 @@
 
 #include <iostream>
 #include <vector>
+#include "Home.h"
 
-class Room {
+class Room{
 
     public:
         std::string room_name;      //Name of the Room
         Interactable* devices;      //Devices inside of the room
         int num_devices;            //Total number of interactables currently inside the room;
         int capacity;               //Total number of interactables that can occupy one room
-        std::vector<Interactable> *interactables; // = new std::vector<Interactable>;
+        std::vector<Interactable*> *interactables; // = new std::vector<Interactable>;
 
     public:
     //Default Constructor

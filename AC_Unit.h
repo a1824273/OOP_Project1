@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-class AC_Unit{
+class AC_Unit: public Interactable{
 private:
     std::string AC_unit_name;
     float AC_temperature;
