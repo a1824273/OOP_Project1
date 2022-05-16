@@ -27,8 +27,8 @@ class Home{
         void remove_room(Room* roomtoRemove);
 
         //list_rooms Function will return the list of rooms in the house
-        vector<Room> list_rooms();
-
+        std::vector<Room> list_rooms();
+        
         //Default Destructor
         ~Home();
 
