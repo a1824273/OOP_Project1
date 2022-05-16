@@ -21,6 +21,7 @@ class Room{
     public:
     //Default Constructor
         Room();
+        
     //Variable Constructor that takes name and total number of interactables that can occupy the room;
         Room(std::string name, int capacity);
 

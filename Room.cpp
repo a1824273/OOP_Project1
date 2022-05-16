@@ -80,6 +80,7 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
 
 };
 
+//Default Destructor 
 Room::~Room(){
     delete [] interactables;
 }

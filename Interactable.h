@@ -9,7 +9,6 @@ class Interactable {
 
     protected:
         std::string interactable_name;
-        //bool access_level;
         bool state;
 
     public:
@@ -20,13 +19,13 @@ class Interactable {
         Interactable(std::string new_name, bool new_state);
 
     //set_name will set the name of the interactable device
-        virtual void set_name(std::string new_name);
+        void set_name(std::string new_name);
 
     //get_name will return the name of the interactable device
         std::string get_name();
 
     //set_state will set the state of the interactable device
-        virtual void set_state(bool new_state);
+        void set_state(bool new_state);
 
     //get_state will return the current state of the interactable device
         bool get_state();
@@ -37,9 +36,14 @@ class Interactable {
     //get_room will return the room that interactable is in
         //void get_room();
 
+    //virtual print function
+        virtual void print();
+
     //Default destructor
         ~Interactable();
 
 };
 
 #endif
+
+
