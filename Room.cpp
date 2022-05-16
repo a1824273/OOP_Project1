@@ -28,6 +28,12 @@ Room::Room(std::string name, int max_capacity){
     
 };
 
+//get_name function
+void Room::get_name(){
+    return room_name;
+}
+
+
 //add_interactable function
 void Room::add_interactable(std::string interactable_type, std::string interactable_name){
 

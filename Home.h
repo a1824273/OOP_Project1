@@ -29,7 +29,7 @@ class Home{
         void remove_room(Room* roomtoRemove);
 
         //list_rooms Function will return the list of rooms in the house
-        std::vector<Room> list_rooms();
+        void list_rooms();
 
         //Default Destructor
         ~Home();

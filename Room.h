@@ -24,6 +24,9 @@ class Room{
     //Variable Constructor that takes name and total number of interactables that can occupy the room;
         Room(std::string name, int capacity);
 
+    //get_name will return the name of the room;
+        std::string get_name();
+
     //add_interactable will create an interactable with given type and name, and then add it to the current room.
         void add_interactable(std::string interactable_type, std::string interactable_name);
 
