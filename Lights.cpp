@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include "Lights.h"
+#include "Interactable.h"
 
 using namespace std;
 
