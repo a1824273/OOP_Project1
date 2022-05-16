@@ -7,14 +7,15 @@
 #include "Smart_Television.h"
 #include "Media_Device.h"
 #include "AC_Unit.h"
+#include "Door.h"
 
 //Default Constructor
 Room::Room(){
 
-    room_name = "N/A";                      //setting Room Name to N/A
-    capacity = 0;                           //setting Capacity to 0
-    interactables = new std::vector<Interactable*>;   //Initialising the List Vector
-    interactables->clear();                          //Clearing the List Vector
+    room_name = "N/A";                                  //setting Room Name to N/A
+    capacity = 0;                                       //setting Capacity to 0
+    interactables = new std::vector<Interactable*>;     //Initialising the List Vector
+    interactables->clear();                             //Clearing the List Vector
 
 };
 
@@ -29,10 +30,15 @@ Room::Room(std::string name, int max_capacity){
 };
 
 //get_name function
-void Room::get_name(){
+std::string Room::get_name(){
     return room_name;
-}
+};
 
+//set_name function
+void Room::set_name(std::string name){
+    room_name = name;
+
+};
 
 //add_interactable function
 void Room::add_interactable(std::string interactable_type, std::string interactable_name){
@@ -40,7 +46,7 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
     //Creating Light Object and adding it to the list of interactables
     if(interactable_type == "Lights" || interactable_type == "Light" ){
         Lights *CreatedLight = new Lights();
-        CreatedLight->set_light_name(interactable_name);
+        CreatedLight->set_name(interactable_name);
         interactables->push_back(CreatedLight);
     }
      
@@ -65,10 +71,14 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
         interactables->push_back(CreatedAC);
     }
 
-
+    //Creating Smart_Speaker Object and adding it to the list of interactables
+    if(interactable_type == "Door" || interactable_type == "door"){
+        Door *CreatedDoor = new Door();
+        CreatedDoor->set_name(interactable_name);
+        interactables->push_back(CreatedDoor);
+    }
 
 };
-
 
 Room::~Room(){
     delete [] interactables;

@@ -23,8 +23,14 @@ class Home{
         //Variable Constructor
         Home(std::string new_name);
 
+        //get_name function will return name of the home
+        void get_name();
+
+        //set_name function will set name of home
+        std::string set_name(std::string name);
+
         //add_room Function will add a room to the house
-        void add_room(Room* roomtoAdd);
+        void add_room(std::string interactable_name);
 
         //remove_room Function will remove a room from the house
         void remove_room(Room* roomtoRemove);

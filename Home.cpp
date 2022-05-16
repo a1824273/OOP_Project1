@@ -4,7 +4,7 @@
 #include "Room.h"
 #include "Home.h"
 
-
+//Default Constructor
 Home::Home(){
     home_name = "N/A";
     numRooms = 0;
@@ -12,6 +12,7 @@ Home::Home(){
     rooms->clear();
 };
 
+//Variable Constructor
 Home::Home(std::string new_name){
     home_name = new_name;
     numRooms = 0;
@@ -20,9 +21,22 @@ Home::Home(std::string new_name){
 
 };
 
-void Home::add_room(Room* roomtoAdd){
-    rooms->push_back(roomtoAdd);
-    std::cout << "Room has been successfully added to Home." << std::endl;
+//get_name function
+Home::get_name(){
+    return home_name;
+}
+
+Home::set_name(std::string name){
+    home_name = name;
+}
+
+
+void Home::add_room(std::string room_name){
+
+    Room* CreatedRoom = new Room();
+    CreatedRoom->set_name(room_name);
+    rooms->push_back(CreatedRoom);
+    std::cout << "Room has been successfully created and added to Home." << std::endl;
 
 };
 

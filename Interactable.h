@@ -7,9 +7,8 @@
 
 class Interactable {
 
-    private:
+    protected:
         std::string interactable_name;
-        //Room* current_room;
         //bool access_level;
         bool state;
 
