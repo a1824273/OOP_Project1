@@ -36,3 +36,7 @@ bool Interactable::get_state(){
     return state;
 
 };
+
+Interactable::~Interactable(){
+
+};

@@ -1,6 +1,7 @@
 
 #ifndef ROOM_H_
 #define ROOM_H_
+
 #include "Interactable.h"
 
 #include <iostream>
