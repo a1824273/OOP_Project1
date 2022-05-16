@@ -37,7 +37,7 @@ class Interactable {
         //void get_room();
 
     //virtual print function
-        //virtual void print();
+        virtual void print();
 
     //Default destructor
         ~Interactable();
@@ -45,5 +45,3 @@ class Interactable {
 };
 
 #endif
-
-

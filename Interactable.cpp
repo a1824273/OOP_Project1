@@ -3,7 +3,7 @@
 #include <vector>
 #include "Interactable.h"
 
-//Default Constructor 
+//Default Constructor
 Interactable::Interactable(){
     interactable_name = "N/A";
     state = 0;
@@ -40,3 +40,5 @@ bool Interactable::get_state(){
 Interactable::~Interactable(){
 
 };
+
+void Interactable::print() {}
