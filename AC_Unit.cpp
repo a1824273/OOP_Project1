@@ -1,20 +1,17 @@
 #include <iostream>
 #include <string>
 #include "AC_Unit.h"
+#include "Interactable.h"
 
 
 AC_Unit::AC_Unit(){
     //default AC_Unit constructor
-    AC_unit_name = "AC Unit 1";
     AC_temperature = 26.0;
     current_fan_speed = 0;
     AC_on_or_off = false;
 }
         
-AC_Unit::AC_Unit(std::string AC_name, float original_temp, int AC_fan_speed, bool AC_on){
-    //AC_Unit constructor with user input
-    AC_unit_name = AC_name;
-    
+AC_Unit::AC_Unit(float original_temp, int AC_fan_speed, bool AC_on){
     //AC temp has to be above 0, less than 100
     if (original_temp > 0 && original_temp < 100){
         AC_temperature = original_temp;
@@ -37,15 +34,6 @@ AC_Unit::AC_Unit(std::string AC_name, float original_temp, int AC_fan_speed, boo
     AC_on_or_off = AC_on;
 }
 
-void AC_Unit::set_name(std::string AC_name){
-    //setting AC Name
-    AC_unit_name = AC_name;
-}
-
-std::string AC_Unit::get_name(){
-    //getting AC Name
-    return AC_unit_name;
-}
 
 void AC_Unit::set_state(bool AC_on){
     //setting AC state
