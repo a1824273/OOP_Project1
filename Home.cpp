@@ -22,11 +22,11 @@ Home::Home(std::string new_name){
 };
 
 //get_name function
-Home::get_name(){
+std::string Home::get_name(){
     return home_name;
 }
 
-Home::set_name(std::string name){
+void Home::set_name(std::string name){
     home_name = name;
 }
 
@@ -55,11 +55,11 @@ void Home::remove_room(Room* roomtoRemove){
 };
 
 void Home::list_rooms(){
-    
+
     for (int i = 0; i < rooms->size(); i++){
         std::cout << &rooms[i] << std::endl;
     };
-    
+
     std::cout << std::endl;
     std::cout << "All rooms have been successfully printed." << std::endl;
 
