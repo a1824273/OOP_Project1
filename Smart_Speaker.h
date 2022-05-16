@@ -4,10 +4,11 @@
 #include <iostream>
 #include <string>
 #include "Media_Device.h"
+#include "Interactable.h"
 
 class Smart_Speaker: public Media_Device{
 private:
-    //inheritad from the parent class (media device)
+    //inherited from the parent class (media device)
     int smart_speaker_volume;
     std::string the_smart_speaker_name;
     bool the_smart_speaker_state;
@@ -44,7 +45,6 @@ public:
 
     //default destructor
     ~Smart_Speaker();
-
 };
 
 #endif

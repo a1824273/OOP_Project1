@@ -2,20 +2,27 @@
 #include <string>
 #include "Media_Device.h"
 #include "Smart_Speaker.h"
+#include "Interactable.h"
 
 Smart_Speaker::Smart_Speaker(){
     //default constructor for smart speaker
-    the_smart_speaker_name = "TV2";
     the_media_state = false;
-    current_speaker_channel ="No_signal";
+    current_speaker_channel = "No_signal";
     smart_speaker_volume = 3;
     current_audio = "nothing playing";
-
+    if (the_media_state == true){
+        std::cout << "The speaker is on!" << std::endl;
+    }
+    else if(the_media_state == false){
+        std::cout << "The speaker is off!" << std::endl;
+    }
+    std::cout << "The speaker is playing" << current_speaker_channel << std::endl;
+    std::cout << "The speaker volume: " << smart_speaker_volume << std::endl;
+    std::cout << "The current audio is: " << current_audio << std::endl;
 }
 
 Smart_Speaker::Smart_Speaker(std::string current_speaker_audio){
     //constructor with user input
-    the_smart_speaker_name = the_media_name;
     if (the_media_state == false){
         current_speaker_channel = "No_signal";
         smart_speaker_volume = 0;
@@ -33,6 +40,15 @@ Smart_Speaker::Smart_Speaker(std::string current_speaker_audio){
         }
         current_audio = current_speaker_audio;
     }
+    if (the_media_state == true){
+        std::cout << "The speaker is on!" << std::endl;
+    }
+    else if(the_media_state == false){
+        std::cout << "The speaker is off!" << std::endl;
+    }
+    std::cout << "The speaker is playing" << current_speaker_channel << std::endl;
+    std::cout << "The speaker volume: " << smart_speaker_volume << std::endl;
+    std::cout << "The current audio is: " << current_audio << std::endl;
 }
 
 //inherited functions
@@ -45,12 +61,12 @@ void Smart_Speaker::set_media_volume(int media_volume_level){
     else{
         smart_speaker_volume = 0;
     }
+    std::cout << "The speaker volume: " << smart_speaker_volume << std::endl;
 }
 
 int Smart_Speaker::get_speaker_volume(){
     //getting the speaker volume
     return smart_speaker_volume;
-
 }
 
 void Smart_Speaker::set_current_channel(std::string new_channel){
@@ -61,7 +77,7 @@ void Smart_Speaker::set_current_channel(std::string new_channel){
     else{
         current_speaker_channel = "No_signal";
     }
-
+    std::cout << "The speaker is playing" << current_speaker_channel << std::endl;
 }
 
 std::string Smart_Speaker::get_current_channel(){
@@ -79,7 +95,7 @@ void Smart_Speaker::set_current_audio(std::string current_speaker_audio){
     else{
         current_audio = "Nothing playing";
     }
-
+    std::cout << "The current audio is: " << current_audio << std::endl;
 }
 
 std::string Smart_Speaker::get_current_audio(){
