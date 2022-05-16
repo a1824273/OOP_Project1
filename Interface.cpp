@@ -181,6 +181,46 @@ void Interface::remove(vector<string> command)
 
 }
 
+
+
+
+
+
+
+
+void Interface::list(vector<string> command)
+{
+    const string object_to_list = command.at(1);
+
+    //Lists the rooms in the house
+    if(command.at(1) == "Rooms")
+    {
+        home.list_rooms();
+    }
+
+    //Lists the devices i the specified room
+    else if(command.at(1) == "Interactables")
+    {
+        Room * room_to_list = findRoom(command.at(2))
+    }
+
+    else
+    {
+        Interactable * device_to_print = findInteractable(command.at(1), findRoom(command.at(2)));
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
 void Interface::set(vector<string> command)
 {
     /*
@@ -191,10 +231,10 @@ void Interface::set(vector<string> command)
     3: status to set it to
     */
 
-    const string interactable_name = command.at(0);
-    const string interactable_room = command.at(1);
-    const string member = command.at(2);
-    const string status = command.at(3);
+    const string interactable_name = command.at(1);
+    const string interactable_room = command.at(2);
+    const string member = command.at(3);
+    const string status = command.at(4);
 
 
 
@@ -247,3 +287,8 @@ void Interface::set(vector<string> command)
         if(member == "brightness") {actor->set_brightness_level(any_cast<int>(status));}
     }
 }
+
+
+
+
+virtual void print();
