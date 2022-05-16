@@ -186,7 +186,7 @@ void Interface::remove(vector<string> command)
 
 
 
-
+/*
 
 void Interface::list(vector<string> command)
 {
@@ -210,7 +210,7 @@ void Interface::list(vector<string> command)
     }
 
 }
-
+*/
 
 
 
@@ -287,8 +287,3 @@ void Interface::set(vector<string> command)
         if(member == "brightness") {actor->set_brightness_level(any_cast<int>(status));}
     }
 }
-
-
-
-
-virtual void print();
