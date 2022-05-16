@@ -9,11 +9,11 @@
 class Smart_Television: public Media_Device {
 private:
     //inherited from the parent class (media device)
-    int smart_television_volume;
-    bool the_smart_television_state;
-    std::string current_television_channel;
+    int smart_television_volume;                //the volume of the television
+    bool the_smart_television_state;            //states if the television is on or off (on is true)
+    std::string current_television_channel;     //states the current channel of the television
     //specific to this class
-    int brightness_level;
+    int brightness_level;                       //states the brightness level of the television
 
 public:
     //default media constructor
@@ -35,17 +35,18 @@ public:
     //getting the current channel
     std::string get_current_channel();
     
+    //function specific to the smart television class
 
-
-
-    //function specific tp the smart television class
     //changing the brigthness of the televison
     void set_brightness_level(int tv_brightness);
 
     //getting the current channel brightness
     int get_brightness_level();
+
+    //printing all current infomation of the smart television
+    void print();
     
-    //default Smart_Television desctructor
+    //default Smart_Television destructor
     ~Smart_Television();
 };
 

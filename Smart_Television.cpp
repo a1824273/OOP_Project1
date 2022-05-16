@@ -7,10 +7,10 @@
 
 Smart_Television::Smart_Television(){
     //default media constructor
-    the_media_state = false;
-    current_television_channel = "No signal";
-    smart_television_volume = 3;
-    brightness_level = 0;
+    the_media_state = false;                            //the volume of the television
+    current_television_channel = "No signal";           //states the current channel of the television
+    smart_television_volume = 3;                        //states if the television is on or off (on is true)
+    brightness_level = 0;                               //states the brightness level of the television
     if (the_media_state == true){
         std::cout << "The smart television is on!" << std::endl;
     }
@@ -111,6 +111,19 @@ int Smart_Television::get_brightness_level(){
     return brightness_level;
 }
 
+void Smart_Television::print(){
+    //printing all current infomation of the smart television
+    if (the_media_state == true){
+        std::cout << "The smart television is on!" << std::endl;
+    }
+    else if(the_media_state == false){
+        std::cout << "The smart television is off!" << std::endl;
+    }
+    std::cout << "The current television channel is: " << current_television_channel << std::endl;
+    std::cout << "The television is playing at volume " << smart_television_volume << std::endl;
+    std::cout << "The brightness of the television is: " << brightness_level << std::endl;
+}
+
 Smart_Television::~Smart_Television(){
-    //default Smart_Television desctructor
+    //default Smart_Television destructor
 }
