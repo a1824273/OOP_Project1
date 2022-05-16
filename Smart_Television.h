@@ -8,10 +8,10 @@
 
 class Smart_Television: public Media_Device {
 private:
-    //inheritad from the parent class (media device)
+    //inherited from the parent class (media device)
     int smart_television_volume;
     bool the_smart_television_state;
-    std::string current_televsion_channel;
+    std::string current_television_channel;
     //specific to this class
     int brightness_level;
 
