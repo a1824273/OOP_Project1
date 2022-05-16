@@ -121,10 +121,10 @@ void Interface::helpScreen()
 Room * Interface::findRoom(string roomName)
 {
     //Checks through the list of rooms
-    for (size_t i = 0; i < home.rooms.size(); i++)
+    for (size_t i = 0; i < home->rooms.size(); i++)
     {
         //the iterator is a pointer to the ith room in the list
-        Room * iterator = &(home.rooms.at(i));
+        Room * iterator = &(home->rooms.at(i));
         //check what the name of this room is and if it is the wanted one
         //return a pointer to this room
         if (iterator->room_name == roomName) {return iterator;}
@@ -138,7 +138,7 @@ Interactable * Interface::findInteractable(string deviceName, Room * roomToLookI
     for (size_t i = 0; i < home.roomToLookIn->list.size(); i++)
     {
         //the iterator is a pointer to the ith room in the list
-        Interactable * iterator = &(home.roomToLookIn->list->at(i));
+        Interactable * iterator = &(home->roomToLookIn->list->at(i));
         //check what the name of this room is and if it is the wanted one
         //return a pointer to this room
         if (iterator->get_name() == deviceName) {return iterator;}
@@ -157,7 +157,7 @@ int Interface::add(vector<string> command)
     {
         //create a room in the house object with a name input from the command
         //command.at(2) is a string and a room will be created with that name
-        home.addRoom(command.at(2));
+        home->addRoom(command.at(2));
         return 0;
         //exit this function as the command has been completed
     }
