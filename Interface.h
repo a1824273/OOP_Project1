@@ -23,7 +23,7 @@ using namespace std;
 class Interface
 {
   private:
-      //House * home;
+      Home * home;
       /*string bannedNames =
       {
           "house",

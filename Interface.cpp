@@ -2,7 +2,7 @@
 
 
 
-Interface::Interface(/*House * home) :home(home*/)
+Interface::Interface(Home * home) :home(home)
 {
     /*nocbreak();
     echo();
@@ -11,6 +11,7 @@ Interface::Interface(/*House * home) :home(home*/)
     cout << "\033[2J \033[H";
 
     //cout << "\u001b[47;1m" << endl;
+
 }
 Interface::~Interface()
 {
