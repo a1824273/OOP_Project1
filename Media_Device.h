@@ -7,9 +7,9 @@
 
 class Media_Device: public Interactable {
 protected:
-    bool the_media_state;
-    int the_media_volume_level;
-    std::string current_channel;
+    bool the_media_state;               //states if the media device is on or off (on is true)
+    int the_media_volume_level;         //current volume of media device
+    std::string current_channel;        //current channel of media device
 
 public:
     //default media device constructor
@@ -36,6 +36,9 @@ public:
 
     //getting the current channel
     std::string get_current_channel();
+
+    //printing all current infomation of the media device
+    void print();
 
     //default destructor
     ~Media_Device();

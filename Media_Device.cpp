@@ -31,7 +31,7 @@ Media_Device::Media_Device(bool media_state, int media_volume_level, std::string
     if (the_media_state == true){
         current_channel = new_channel;
     }
-    std::cout << "You are on " << current_channel << std::endl;
+    std::cout << "The current channel is " << current_channel << std::endl;
 }
 
 void Media_Device::set_media_state(bool media_state){
@@ -77,6 +77,18 @@ void Media_Device::set_current_channel(std::string new_channel){
 
 std::string Media_Device::get_current_channel(){
     return current_channel;
+}
+
+void Media_Device::print(){
+    //printing all current infomation of the media device
+    if (the_media_state == true){
+        std::cout << "The media device is on" << std::endl;
+    }
+    else if(the_media_state == true){
+        std::cout << "The media device is off" << std::endl;
+    }
+    std::cout << "The device's volume is: " << the_media_volume_level << std::endl;
+    std::cout << "The current channel is " << current_channel << std::endl;
 }
 
 Media_Device::~Media_Device(){
