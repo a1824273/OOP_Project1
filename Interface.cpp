@@ -187,7 +187,6 @@ void Interface::remove(vector<string> command)
 
 
 /*
-
 void Interface::list(vector<string> command)
 {
     const string object_to_list = command.at(1);
