@@ -36,7 +36,7 @@ class Room{
         void add_interactable(std::string interactable_type, std::string interactable_name);
 
     //remove_interactable will remove and interactable in the current room given the type and name.
-        void remove_interactable(std::string interactable_type, std::string interactable_name);
+        void remove_interactable(Interactable * interactableToRemove);
 
     //list_interactables will return the list of interactables in a current room
         void list_interactables();

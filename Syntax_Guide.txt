@@ -6,48 +6,58 @@ The system works inside a home, which contains rooms, and these rooms contain th
 
 
 Getting Started:
-You can't have a smart home without rooms to put them in! To begin then, we must add a room to the home.
-This is achieved through the 'add' command which follows the syntax:
+	You can't have a smart home without rooms to put them in! To begin then, we must add a room to the home.
+	This is achieved through the 'add' command which follows the syntax:
 
->>> add Room [room_name]
+	>>> add Room [room_name]
 
-This command is also used to add interactables to the room, using the syntax:
+	This command is also used to add interactables to the room, using the syntax:
 
->>> add [interactable_type] [interactable_name] [room_name]
+	>>> add [interactable_type] [interactable_name] [room_name]
 
-The interactable types we currently support are:
-Lights
-Door
-AC_Unit
-Smart_Speaker
-Smart_Television
+	The interactable types we currently support are:
+	Lights
+	Door
+	AC_Unit
+	Smart_Speaker
+	Smart_Television
 
-After specifying the type of device you would like to add, give it a name and choose the room you would like to add it to
-Be careful, your room needs to exist before adding an interactable to it.
+	After specifying the type of device you would like to add, give it a name and choose the room you would like to add it to
+	Be careful, your room needs to exist before adding an interactable to it.
 
 
 
 Viewing Your Home:
-So you've got some interactable's and now you want to view your home. Look no further than the "list" command.
+	So you've got some interactable's and now you want to view your home. Look no further than the "list" command.
 
-To view the contents of a room, use:
->>> list [room_name]
+	To view the contents of a room, use:
+	>>> list [room_name]
 
-Or to view the properies of an interactable
->>> list [interactable_name] [room_name]
+	Or to view the properies of an interactable
+	>>> list [interactable_name] [room_name]
 
-By requiring you to specify the room of this interactable, it allows you to have multiple devices with the same name, but spread over different rooms
+	By requiring you to specify the room of this interactable, it allows you to have multiple devices with the same name, but spread over different rooms
 
+
+Removing a Room or Interactable:
+	So now you want to get rid of an interactable, or even a whole room!
+
+	To remove a room from the house:
+	>>> remove [room_name]
+
+	or to remove an interactable from a roome:
+	>>> remove [interactable_name] [room_name]
 
 
 Changing Device Properies:
-So you can make and look at interactables, but what about doing something weith them?
-This is where the set command comes in.
-This command has one implementation but follows a strict syntax:
+	So you can make and look at interactables, but what about doing something weith them?
+	This is where the set command comes in.
+	This command has one implementation but follows a strict syntax:
 
->>> set [interactable_name] [room_name] [property] [status] 
+	>>> set [interactable_name] [room_name] [property] [status] 
 
-Each type of interactable has it's own properties and subsequent values and these are explored below.
+	Each type of interactable has it's own properties and subsequent values and these are explored below.
+
 
 
 Lights:

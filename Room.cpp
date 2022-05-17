@@ -89,7 +89,7 @@ void Room::list_interactables()
     }
 }
 
-void remove_interactable(Interactable * interactableToRemove)
+void Room::remove_interactable(Interactable * interactableToRemove)
 {
     int position;
     for (int i = 0; i < interactables->size(); i++){
