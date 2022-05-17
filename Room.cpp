@@ -65,7 +65,7 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
     }
 
     //Creating AC_Unit Object and adding it to the list of interactables
-    if(interactable_type == "AC Unit" || interactable_type == "ACUnit" || interactable_type == "AC"){
+    if(interactable_type == "AC Unit" || interactable_type == "ACUnit" || interactable_type == "AC" || interactable_type == "AC_Unit"){
         AC_Unit *CreatedAC = new AC_Unit;
         CreatedAC->set_name(interactable_name);
         interactables->push_back(CreatedAC);

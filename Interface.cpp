@@ -27,6 +27,7 @@ void Interface::header()
     cout << R"(|__/ _|   ___]     \/  | |  \  |  |__| |  | |___    ___] |  | |  | |  \  |     |  | |__| |  | |___    ___]   |   ___]  |  |___ |  | )" << endl;
     cout << "Enter commands below" << endl;
     cout << "Type \"help\" for command line help" << endl;
+    cout << "Type \"exit\" to exit application" << endl;
     //getch();
 }
 
@@ -70,15 +71,6 @@ vector<string> Interface::getCommand()
     }
 
 
-    /****************
-    vector<string>::iterator itr = command.begin();
-
-    for (size_t i = 0; i < command.size(); i++) {
-        printw(command[i].data());
-        printw("\n");
-    }
-    ****************/
-
     //returns the vector of strings
     return command;
 };
@@ -109,12 +101,11 @@ void Interface::helpScreen()
 {
     cout << "\u001b[33;1m" << endl;
     cout << "*************************************************************************************************************" << endl;
-    cout << "Syntax Guide:" << endl;
-    cout << endl;
-    cout << "Here is where the syntax guide as well as examples for the user to follow will be printed" << endl;
-    cout << "e.g. >>>add Light Lamp Bedroom" << endl;
-    cout << "This adds a light called Lamp in the room \"Bedroom\"" << endl;
-    cout << "set [device name] [room name] [member] [state]" << endl;
+
+    ifstream f("Syntax_Guide.txt");
+    if (f.is_open())
+        std::cout << f.rdbuf();
+
     cout << "*************************************************************************************************************" << endl;
     cout << endl;
 }
@@ -247,10 +238,10 @@ int Interface::set(vector<string> command)
 
     //find the room,s to work in
     Room * deviceRoom = findRoom(interactable_room);
-    if(deviceRoom == nullptr) {cout << "No Room exists of name: \"" << interactable_room << "\"" << endl;}
+    if(deviceRoom == nullptr) {cout << "No Room exists of name: \"" << interactable_room << "\"" << endl; return 0;}
     //find the interactable to work on
     Interactable * interactable_to_change = findInteractable(interactable_name, deviceRoom);
-    if(interactable_to_change == nullptr) {cout << "No Interactable exists of name: \"" << interactable_name << "\" " << "in \"" << interactable_room << "\"" << endl;}
+    if(interactable_to_change == nullptr) {cout << "No Interactable exists of name: \"" << interactable_name << "\" " << "in \"" << interactable_room << "\"" << endl; return 0;}
 
 
     //handles universal on/off functions
