@@ -6,7 +6,7 @@
 
 AC_Unit::AC_Unit(){
     //default AC_Unit constructor
-    type = "AC Unit";               //interactable type
+    type = "AC_Unit";               //interactable type
     AC_temperature = 26.0;          //current temperature of AC unit
     current_fan_speed = 0;          //current fan speed of AC unit
     AC_on_or_off = false;           //states if the AC unit is on or off (on is true)
