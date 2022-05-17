@@ -3,9 +3,10 @@
 #include "Door.h"
 
 Door::Door(){
-    type = "Door";
     //default parameter
+    type = "Door";          //states the type of interactable object
     locked = false;         //states if the door is locked or unlocked (locked is true)
+    std::cout << "This object is a " << type << std::endl;
     if (locked == false){
         std::cout << "The door is unlocked!" << std::endl;
     }
@@ -16,6 +17,7 @@ Door::Door(){
 
 Door::Door(bool door_status){
     //Door constructor with user input
+    std::cout << "This object is a " << type << std::endl;
     locked = door_status;
     if (locked == false){
         std::cout << "The door is unlocked!" << std::endl;
@@ -43,6 +45,7 @@ bool Door::get_door_state(){
 
 void Door::print(){
     //printing all current infomation of the door
+    std::cout << "This object is a " << type << std::endl;
     if (locked == false){
         std::cout << "The door is unlocked!" << std::endl;
     }
