@@ -7,9 +7,9 @@
 
 class AC_Unit: public Interactable{
 private:
-    float AC_temperature;
-    int current_fan_speed;
-    bool AC_on_or_off;
+    float AC_temperature;           //current temperature of AC unit
+    int current_fan_speed;          //current fan speed of AC unit
+    bool AC_on_or_off;              //states if the AC unit is on or off (on is true)
 public:
     //default AC_Unit constructor
     AC_Unit();
@@ -34,6 +34,9 @@ public:
 
     //getting AC Name
     float get_AC_speed();
+
+    //printing all current infomation of the AC_Unit
+    void print();
 
     //destructor
     ~AC_Unit();
