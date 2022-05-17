@@ -36,7 +36,7 @@ void Interface::console()
     do
     {
         cout << "\u001b[0m";
-        cout << ">>>";
+        cout << ">>> ";
         command = getCommand();
 
         //Interpret commands
@@ -95,12 +95,12 @@ bool Interface::runCommand(vector<string> command)
 
     if(command.at(0) == "help") {helpScreen(); return 1;}
     if(command.at(0) == "exit") {return 0;}
-/*
+
     if(command.at(0) == "add")  {add(command); return 1;}
     if(command.at(0) == "remove") {}
-    if(command.at(0) == "set") {}
+    if(command.at(0) == "set") {set(command); return 1;}
+    if(command.at(0) == "list") {list(command); return 1;}
 
-*/
     else {cout << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
 }
 
@@ -163,7 +163,7 @@ int Interface::add(vector<string> command)
     }
 
     //now need to change the command check length as all other commands are bigger
-    if(command.size() < 3) {cout << "Insufficient Command Length" << endl; return 0;}
+    if(command.size() < 4) {cout << "Insufficient Command Length" << endl; return 0;}
 
     //Add Device
     //gets a pointer to the rooms we want to operate in
@@ -183,44 +183,41 @@ void Interface::remove(vector<string> command)
 
 
 
-
-
-
-/*
 void Interface::list(vector<string> command)
 {
-    const string object_to_list = command.at(1);
+    //const string object_to_list = command.at(1);
 
     //Lists the rooms in the house
     if(command.at(1) == "Rooms")
     {
-        home.list_rooms();
+        home->list_rooms();
     }
 
     //Lists the devices i the specified room
     else if(command.at(1) == "Interactables")
     {
-        Room * room_to_list = findRoom(command.at(2))
+        Room * room_to_list = findRoom(command.at(2));
+        room_to_list->list_interactables();
+    }
+
+    else if(command.size() == 3)
+    {
+        Interactable * device_to_print = findInteractable(command.at(1), findRoom(command.at(2)));
+        device_to_print->print();
     }
 
     else
     {
-        Interactable * device_to_print = findInteractable(command.at(1), findRoom(command.at(2)));
+        cout << "Unable to list object " << command.at(1) << endl;
+        cout << "Check to see if this rooms really exists (>>list rooms)" << endl;
     }
 
 }
-*/
 
 
 
 
-
-
-
-
-
-
-void Interface::set(vector<string> command)
+int Interface::set(vector<string> command)
 {
     /*
     Command structure
@@ -229,6 +226,12 @@ void Interface::set(vector<string> command)
     2: member to alters
     3: status to set it to
     */
+
+    if(command.size() != 5)
+    {
+        cout << "Incorrect command length" << endl;
+        return 0;
+    }
 
     const string interactable_name = command.at(1);
     const string interactable_room = command.at(2);
@@ -247,9 +250,13 @@ void Interface::set(vector<string> command)
     if(member == "onoff") {interactable_to_change->set_state(stoi(status));}
     if(member == "name") {interactable_to_change->set_name(status);}
 
+    cout << "Device to change is of type" << endl;
+    cout << typeid(*interactable_to_change).name() << endl;
+
     //Lights
     if(typeid(*interactable_to_change).name() == "Lights")
     {
+        cout << "Altering the Light" << endl;
         Lights* actor = dynamic_cast<Lights*>(interactable_to_change);
         if(member == "colour") {actor->set_colour(status);}
     }
