@@ -89,7 +89,7 @@ bool Interface::runCommand(vector<string> command)
     if(command.at(0) == "exit") {return 0;}
 
     if(command.at(0) == "add")  {add(command); return 1;}
-    if(command.at(0) == "remove") {}
+    if(command.at(0) == "remove") {remove(command); return 1;}
     if(command.at(0) == "set") {set(command); return 1;}
     if(command.at(0) == "list") {list(command); return 1;}
 
@@ -169,9 +169,33 @@ int Interface::add(vector<string> command)
     return 1;
 }
 
-void Interface::remove(vector<string> command)
+
+int Interface::remove(vector<string> command)
 {
 
+
+    if(command.size() == 2)
+    {
+        const string room = command.at(1);
+        Room * roomToRemove = findRoom(room);
+        if (roomToRemove == nullptr) {cout << "No room of name " << room << endl; return 0;}
+        home->remove_room(roomToRemove);
+        return 1;
+    }
+    /*else if(command.size() == 3)
+    {
+        const string device = command.at(1);
+        const string room = command.at(2);
+        Room * roomToRemove = findRoom(room);
+        if (roomToRemove == nullptr) {cout << "No room of name " << room << endl; return 0;}
+        Interactable * interactableToRemove = findInteractable(device, roomToRemove);
+        if(interactableToRemove == nullptr) {cout << "No interactable of name " << room << endl; return 0;}
+        roomToRemove->
+
+    }*/
+
+
+    return 0;
 }
 
 

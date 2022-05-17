@@ -54,13 +54,15 @@ class Interface
       int add(vector<string> command);
 
       //for removing rooms from the home or interactables from the rooms
-      void remove(vector<string> command);
+      int remove(vector<string> command);
 
       //returns a pointer the room with name roomName
       Room * findRoom(string roomName);
 
       //returns pointer to interactable with name deviceName in the room roomToLookIn
       Interactable * findInteractable(string deviceName, Room * roomToLookIn);
+
+      //lists the rooms in the house or interactables in a room
       int list(vector<string> command);
 
 };

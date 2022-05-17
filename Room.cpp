@@ -89,6 +89,19 @@ void Room::list_interactables()
     }
 }
 
+void remove_interactable(Interactable * interactableToRemove)
+{
+    int position;
+    for (int i = 0; i < interactables->size(); i++){
+        if (interactables->at(i) == interactableToRemove){
+            position = i;
+        }
+    };
+
+    interactables->erase(interactables->begin()+position);
+    std::cout << "Interactable has been successfully removed from Room." << std::endl;
+}
+
 //Default Destructor
 Room::~Room(){
     delete [] interactables;
