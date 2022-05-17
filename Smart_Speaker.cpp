@@ -5,12 +5,13 @@
 #include "Interactable.h"
 
 Smart_Speaker::Smart_Speaker(){
-    type = "Smart_Speaker";
     //default constructor for smart speaker
-    the_media_state = false;                                //states if the smart speaker is on or off (on is true)
-    current_speaker_channel = "No_signal";                  //states the current channel of the speaker
-    smart_speaker_volume = 3;                               //the volume of the smart speaker
-    current_audio = "nothing playing";                      //states the current audio playing in this speaker
+    type = "Smart_Speaker";                         //states the type of interactable object
+    the_media_state = false;                        //states if the smart speaker is on or off (on is true)
+    current_speaker_channel = "No_signal";          //states the current channel of the speaker
+    smart_speaker_volume = 3;                       //the volume of the smart speaker
+    current_audio = "nothing playing";              //states the current audio playing in this speaker
+    std::cout << "This object is a " << type << std::endl;
     if (the_media_state == true){
         std::cout << "The speaker is on!" << std::endl;
     }
@@ -23,8 +24,9 @@ Smart_Speaker::Smart_Speaker(){
 }
 
 Smart_Speaker::Smart_Speaker(std::string current_speaker_audio){
-    type = "Smart_Speaker";
     //constructor with user input
+    type = "Smart_Speaker";
+    std::cout << "This object is a " << type << std::endl;
     if (the_media_state == false){
         current_speaker_channel = "No_signal";
         smart_speaker_volume = 0;
@@ -107,6 +109,7 @@ std::string Smart_Speaker::get_current_audio(){
 
 void Smart_Speaker::print(){
     //printing all current infomation of the smart speaker
+    std::cout << "This object is a " << type << std::endl;
     if (the_media_state == true){
         std::cout << "The speaker is on!" << std::endl;
     }
