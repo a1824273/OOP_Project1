@@ -61,7 +61,7 @@ void Home::remove_room(Room* roomtoRemove){
 void Home::list_rooms(){
 
     for (int i = 0; i < rooms->size(); i++){
-        std::cout << &rooms[i] << std::endl;
+        std::cout << rooms->at(i)->get_name() << std::endl;
     };
 
     std::cout << std::endl;

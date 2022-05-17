@@ -163,7 +163,7 @@ int Interface::add(vector<string> command)
     }
 
     //now need to change the command check length as all other commands are bigger
-    if(command.size() < 4) {cout << "Insufficient Command Length" << endl; return 0;}
+    if(command.size() < 4) {cout << "Insufficient Command Length to add Interactable device of type: " << command.at(1) << endl; return 0;}
 
     //Add Device
     //gets a pointer to the rooms we want to operate in
