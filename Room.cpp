@@ -26,7 +26,7 @@ Room::Room(std::string name, int max_capacity){
     capacity = max_capacity;
     interactables = new std::vector<Interactable*>;
     interactables->clear();
-
+    
 };
 
 //get_name function will return room name
@@ -49,7 +49,7 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
         CreatedLight->set_name(interactable_name);
         interactables->push_back(CreatedLight);
     }
-
+     
     //Creating Smart Television Object and adding it to the list of interactables
     if(interactable_type == "Smart Television" || interactable_type == "SmartTelevision" || interactable_type == "Smart_Television"){
         Smart_Television *CreatedSmart_Television = new Smart_Television;
@@ -64,14 +64,14 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
         interactables->push_back(CreatedSmart_Speaker);
     }
 
-    //Creating Smart_Speaker Object and adding it to the list of interactables
+    //Creating AC_Unit Object and adding it to the list of interactables
     if(interactable_type == "AC Unit" || interactable_type == "ACUnit" || interactable_type == "AC"){
         AC_Unit *CreatedAC = new AC_Unit;
         CreatedAC->set_name(interactable_name);
         interactables->push_back(CreatedAC);
     }
 
-    //Creating Smart_Speaker Object and adding it to the list of interactables
+    //Creating Door Object and adding it to the list of interactables
     if(interactable_type == "Door" || interactable_type == "door"){
         Door *CreatedDoor = new Door;
         CreatedDoor->set_name(interactable_name);
@@ -80,7 +80,8 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
 
 };
 
-//Default Destructor
+//Default Destructor 
 Room::~Room(){
     delete [] interactables;
 }
+

@@ -21,16 +21,17 @@ Home::Home(std::string new_name){
 
 };
 
-//get_name function
+//get_name function will return the name of the home
 std::string Home::get_name(){
     return home_name;
 }
 
+//set_name function will set the name of the home given a string
 void Home::set_name(std::string name){
     home_name = name;
 }
 
-
+//add_room function will create a room and add it to the list of rooms inside the home
 void Home::add_room(std::string room_name){
 
     Room* CreatedRoom = new Room();
@@ -40,6 +41,8 @@ void Home::add_room(std::string room_name){
 
 };
 
+
+//remove_room function will remove a room from a home
 void Home::remove_room(Room* roomtoRemove){
 
     int position;
@@ -54,6 +57,7 @@ void Home::remove_room(Room* roomtoRemove){
 
 };
 
+//list_rooms function will print all the rooms inside a home
 void Home::list_rooms(){
 
     for (int i = 0; i < rooms->size(); i++){
@@ -65,6 +69,7 @@ void Home::list_rooms(){
 
 };
 
+//Default Destructor
 Home::~Home(){
     delete [] rooms;
     std::cout << "Home has been destroyed." << std::endl;

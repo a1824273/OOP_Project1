@@ -8,8 +8,8 @@
 class Interactable {
 
     protected:
-        std::string interactable_name;
-        bool state;
+        std::string interactable_name;      //Name of the interactable device
+        bool state;                         //State of the interactable (i.e. on/off)
 
     public:
     //Default constructor will initialise name to be blank, and state to be 0 (representing off)
