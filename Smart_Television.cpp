@@ -6,12 +6,13 @@
 
 
 Smart_Television::Smart_Television(){
-    type = "Smart_Television";
     //default media constructor
+    type = "Smart_Television";                          //states the type of interactable object
     the_media_state = false;                            //the volume of the television
     current_television_channel = "No signal";           //states the current channel of the television
     smart_television_volume = 3;                        //states if the television is on or off (on is true)
     brightness_level = 0;                               //states the brightness level of the television
+    std::cout << "This object is a " << type << std::endl;
     if (the_media_state == true){
         std::cout << "The smart television is on!" << std::endl;
     }
@@ -24,8 +25,9 @@ Smart_Television::Smart_Television(){
 }
 
 Smart_Television::Smart_Television(int tv_brightness){
-    type = "Smart_Television";
     //media device constructor with user input
+    type = "Smart_Television";
+    std::cout << "This object is a " << type << std::endl;
     if (the_media_state == false){
         current_television_channel = "No signal";
         smart_television_volume = 0;
@@ -115,6 +117,7 @@ int Smart_Television::get_brightness_level(){
 
 void Smart_Television::print(){
     //printing all current infomation of the smart television
+    std::cout << "This object is a " << type << std::endl;
     if (the_media_state == true){
         std::cout << "The smart television is on!" << std::endl;
     }
