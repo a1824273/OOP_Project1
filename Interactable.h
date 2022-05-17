@@ -8,10 +8,12 @@
 class Interactable {
 
     protected:
-        std::string interactable_name;
-        bool state;
+        std::string interactable_name;      //Name of the interactable device
+        bool state;                         //State of the interactable (i.e. on/off)
 
     public:
+    //A string to let the program know what type of interactable each object is
+    std::string type;
     //Default constructor will initialise name to be blank, and state to be 0 (representing off)
         Interactable();
 
@@ -25,7 +27,7 @@ class Interactable {
         std::string get_name();
 
     //set_state will set the state of the interactable device
-        void set_state(bool new_state);
+        virtual void set_state(bool new_state);
 
     //get_state will return the current state of the interactable device
         bool get_state();

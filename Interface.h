@@ -52,12 +52,14 @@ class Interface
       bool runCommand(vector<string> command);
 
       void helpScreen();
-      void set(vector<string> command);
+      int set(vector<string> command);
       int add(vector<string> command);
       void remove(vector<string> command);
 
       Room * findRoom(string roomName);
       Interactable * findInteractable(string deviceName, Room * roomToLookIn);
+      int list(vector<string> command);
+
 };
 
 #endif

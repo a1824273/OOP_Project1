@@ -39,7 +39,7 @@ class Room{
         void remove_interactable(std::string interactable_type, std::string interactable_name);
 
     //list_interactables will return the list of interactables in a current room
-        std::vector<Interactable> list_interactables();
+        void list_interactables();
 
     //print_interactables will print the list of interactables in a current room
         //void print();

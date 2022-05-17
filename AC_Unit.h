@@ -13,7 +13,7 @@ private:
 public:
     //default AC_Unit constructor
     AC_Unit();
-        
+
     //AC_Unit constructor with user input
     AC_Unit(float original_temp, int AC_fan_speed, bool AC_on);
 
