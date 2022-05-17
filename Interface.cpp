@@ -36,7 +36,7 @@ void Interface::console()
     do
     {
         cout << "\u001b[0m";
-        cout << "\n>>> ";
+        cout << ">>> ";
         command = getCommand();
 
         //Interpret commands
@@ -102,6 +102,7 @@ bool Interface::runCommand(vector<string> command)
     if(command.at(0) == "list") {list(command); return 1;}
 
     else {cout << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
+    cout << endl;
 }
 
 void Interface::helpScreen()
@@ -130,7 +131,7 @@ Room * Interface::findRoom(string roomName)
         if (iterator->room_name == roomName) {return iterator;}
     }
 
-    return NULL;
+    return nullptr;
 }
 
 Interactable * Interface::findInteractable(string deviceName, Room * roomToLookIn)
@@ -144,7 +145,7 @@ Interactable * Interface::findInteractable(string deviceName, Room * roomToLookI
         if (iterator->get_name() == deviceName) {return iterator;}
     }
 
-    return NULL;
+    return nullptr;
 }
 
 
@@ -158,7 +159,7 @@ int Interface::add(vector<string> command)
         //create a room in the house object with a name input from the command
         //command.at(2) is a string and a room will be created with that name
         home->add_room(command.at(2));
-        return 0;
+        return 1;
         //exit this function as the command has been completed
     }
 
@@ -168,12 +169,13 @@ int Interface::add(vector<string> command)
     //Add Device
     //gets a pointer to the rooms we want to operate in
     Room * deviceRoom = findRoom(command.at(3));
-    if(deviceRoom == NULL) {cout << "No rooms of name: " << command.at(3) << endl; return 0;}
+    if(deviceRoom == nullptr) {cout << "No rooms of name: " << command.at(3) << endl; return 0;}
 
     //Pass first of all a string dictating the type of object
     //Pass second the name of the device to create
     //This will be used to create a device of the required type in the correct room
     deviceRoom->add_interactable(command.at(1), command.at(2));
+    return 1;
 }
 
 void Interface::remove(vector<string> command)
@@ -183,7 +185,7 @@ void Interface::remove(vector<string> command)
 
 
 
-void Interface::list(vector<string> command)
+int Interface::list(vector<string> command)
 {
     //const string object_to_list = command.at(1);
 
@@ -194,24 +196,26 @@ void Interface::list(vector<string> command)
     }
 
     //Lists the devices i the specified room
-    else if(command.at(1) == "Interactables")
+    else if(findRoom(command.at(1)) != nullptr)
     {
-        Room * room_to_list = findRoom(command.at(2));
+        Room * room_to_list = findRoom(command.at(1));
         room_to_list->list_interactables();
     }
 
     else if(command.size() == 3)
     {
         Interactable * device_to_print = findInteractable(command.at(1), findRoom(command.at(2)));
+        if(device_to_print == NULL) {cout << "No device called " << command.at(1) << " in " << command.at(2) << endl; return 0;}
         device_to_print->print();
     }
 
     else
     {
         cout << "Unable to list object " << command.at(1) << endl;
-        cout << "Check to see if this rooms really exists (>>list Rooms)" << endl;
+        cout << "Check to see if this room really exists (>>list Rooms)" << endl;
     }
 
+    return 0;
 }
 
 
@@ -223,8 +227,9 @@ int Interface::set(vector<string> command)
     Command structure
     0: set
     1: interactable name
-    2: member to alters
-    3: status to set it to
+    2: room it is in
+    3: member to alters
+    4: status to set it to
     */
 
     if(command.size() != 5)
@@ -242,23 +247,30 @@ int Interface::set(vector<string> command)
 
     //find the room,s to work in
     Room * deviceRoom = findRoom(interactable_room);
+    if(deviceRoom == nullptr) {cout << "No Room exists of name: \"" << interactable_room << "\"" << endl;}
     //find the interactable to work on
     Interactable * interactable_to_change = findInteractable(interactable_name, deviceRoom);
+    if(interactable_to_change == nullptr) {cout << "No Interactable exists of name: \"" << interactable_name << "\" " << "in \"" << interactable_room << "\"" << endl;}
 
 
     //handles universal on/off functions
-    if(member == "onoff") {interactable_to_change->set_state(stoi(status));}
-    if(member == "name") {interactable_to_change->set_name(status);}
+    if(member == "onoff")
+    {
+        if(status == "on") {interactable_to_change->set_state(1); return 1;}
+        else if (status == "off") {interactable_to_change->set_state(0); return 1;}
+        else {cout << "Invalid on/off parameter" << endl;}
+    }
 
-    cout << "Device to change is of type" << endl;
-    cout << typeid(*interactable_to_change).name() << endl;
+    if(member == "name") {interactable_to_change->set_name(status); return 1;}
+
 
     //Lights
-    if(interactable_to_change->typ == "Lights")
+    if(interactable_to_change->type == "Lights")
     {
         cout << "Altering the Light" << endl;
         Lights* actor = dynamic_cast<Lights*>(interactable_to_change);
-        if(member == "colour") {actor->set_colour(status);}
+        if(member == "colour") {actor->set_colour(status); return 1;}
+
     }
 
 
@@ -266,30 +278,38 @@ int Interface::set(vector<string> command)
     if(interactable_to_change->type == "Door")
     {
         Door * actor = dynamic_cast<Door*>(interactable_to_change);
-        if(member == "lock") {actor->set_state(any_cast<bool>(status));}
+        if(member == "lock")
+        {
+            if(status == "unlock")  {actor->set_state(0); return 1;}
+            if(status == "lock")    {actor->set_state(1); return 1;}
+        }
         //if(member == "open") {actor->set_state(status)}
     }
 
     //AC changes
-    if(interactable_to_change->typ == "AC_Unit")
+    if(interactable_to_change->type == "AC_Unit")
     {
         AC_Unit * actor = dynamic_cast<AC_Unit*>(interactable_to_change);
-        if(member == "temp") {actor->set_AC_temp(any_cast<float>(status));}
-        if(member == "speed") {actor->set_AC_speed(any_cast<int>(status));}
+        if(member == "temp") {actor->set_AC_temp(stof(status)); return 1;}
+        if(member == "speed") {actor->set_AC_speed(stoi(status)); return 1;}
     }
 
-    if(interactable_to_change->typ == "Smart_Speaker")
+    if(interactable_to_change->type == "Smart_Speaker")
     {
         Smart_Speaker * actor = dynamic_cast<Smart_Speaker*>(interactable_to_change);
-        if(member == "volume") {actor->set_media_volume(any_cast<int>(status));}
-        if(member == "channel") {actor->set_current_channel(status);}
+        if(member == "volume") {actor->set_media_volume(stoi(status)); return 1;}
+        if(member == "channel") {actor->set_current_channel(status); return 1;}
     }
 
-    if(interactable_to_change->typ == "Smart_Television")
+    if(interactable_to_change->type == "Smart_Television")
     {
         Smart_Television * actor = dynamic_cast<Smart_Television*>(interactable_to_change);
-        if(member == "volume") {actor->set_media_volume(any_cast<int>(status));}
-        if(member == "channel") {actor->set_current_channel(status);}
-        if(member == "brightness") {actor->set_brightness_level(any_cast<int>(status));}
+        if(member == "volume") {actor->set_media_volume(stoi(status)); return 1;}
+        if(member == "channel") {actor->set_current_channel(status); return 1;}
+        if(member == "brightness") {actor->set_brightness_level(stoi(status)); return 1;}
     }
+
+    cout << "Interactable Property " << member << " does not exist" << endl;
+
+    return 0;
 }

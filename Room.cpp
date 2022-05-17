@@ -82,6 +82,7 @@ void Room::add_interactable(std::string interactable_type, std::string interacta
 
 void Room::list_interactables()
 {
+    std::cout << "Interactable's inside " << get_name() << std::endl;
     for (int i = 0; i < interactables->size(); i++)
     {
         std::cout << interactables->at(i)->get_name() << std::endl;

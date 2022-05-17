@@ -58,7 +58,7 @@ class Interface
 
       Room * findRoom(string roomName);
       Interactable * findInteractable(string deviceName, Room * roomToLookIn);
-      void list(vector<string> command);
+      int list(vector<string> command);
 
 };
 

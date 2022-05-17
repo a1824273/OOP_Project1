@@ -27,7 +27,7 @@ class Interactable {
         std::string get_name();
 
     //set_state will set the state of the interactable device
-        void set_state(bool new_state);
+        virtual void set_state(bool new_state);
 
     //get_state will return the current state of the interactable device
         bool get_state();

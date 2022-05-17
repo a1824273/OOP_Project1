@@ -60,6 +60,7 @@ void Home::remove_room(Room* roomtoRemove){
 //list_rooms function will print all the rooms inside a home
 void Home::list_rooms(){
 
+    std::cout << "Rooms:" << std::endl;
     for (int i = 0; i < rooms->size(); i++){
         std::cout << rooms->at(i)->get_name() << std::endl;
     };
