@@ -5,6 +5,7 @@
 #include "Interactable.h"
 
 Smart_Speaker::Smart_Speaker(){
+    type = "Smart_Speaker";
     //default constructor for smart speaker
     the_media_state = false;                                //states if the smart speaker is on or off (on is true)
     current_speaker_channel = "No_signal";                  //states the current channel of the speaker
@@ -22,6 +23,7 @@ Smart_Speaker::Smart_Speaker(){
 }
 
 Smart_Speaker::Smart_Speaker(std::string current_speaker_audio){
+    type = "Smart_Speaker";
     //constructor with user input
     if (the_media_state == false){
         current_speaker_channel = "No_signal";

@@ -6,12 +6,14 @@
 
 AC_Unit::AC_Unit(){
     //default AC_Unit constructor
+    type = "AC_Unit";
     AC_temperature = 26.0;          //current temperature of AC unit
     current_fan_speed = 0;          //current fan speed of AC unit
     AC_on_or_off = false;           //states if the AC unit is on or off (on is true)
 }
 
 AC_Unit::AC_Unit(float original_temp, int AC_fan_speed, bool AC_on){
+    type = "AC_Unit";
     //AC temp has to be above 0, less than 100
     if (original_temp > 0 && original_temp < 100){
         AC_temperature = original_temp;

@@ -4,6 +4,7 @@
 #include "Interactable.h"
 
 Lights::Lights(){
+    type = "Lights";
     //creating a default light object with a light name, light colour and status of the light
     the_light_colour = "white";     //the colour of the light
     light_on_state = true;          //shows whether or not the light is on (on is true)
@@ -17,6 +18,7 @@ Lights::Lights(){
 }
 
 Lights::Lights(std::string light_colour, bool state_of_light){
+    type = "Lights";
     //making a light variable will the light name, light colour and on off state
     the_light_colour = light_colour;
     light_on_state = state_of_light;

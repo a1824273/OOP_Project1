@@ -12,6 +12,8 @@ class Interactable {
         bool state;                         //State of the interactable (i.e. on/off)
 
     public:
+    //A string to let the program know what type of interactable each object is
+    std::string type;
     //Default constructor will initialise name to be blank, and state to be 0 (representing off)
         Interactable();
 

@@ -36,7 +36,7 @@ void Interface::console()
     do
     {
         cout << "\u001b[0m";
-        cout << ">>> ";
+        cout << "\n>>> ";
         command = getCommand();
 
         //Interpret commands
@@ -153,7 +153,7 @@ int Interface::add(vector<string> command)
     if(command.size() < 3) {cout << "Insufficient Command Length" << endl; return 0;}
 
     //Add Room
-    if(command.at(1) == "room")
+    if(command.at(1) == "Room")
     {
         //create a room in the house object with a name input from the command
         //command.at(2) is a string and a room will be created with that name
@@ -209,7 +209,7 @@ void Interface::list(vector<string> command)
     else
     {
         cout << "Unable to list object " << command.at(1) << endl;
-        cout << "Check to see if this rooms really exists (>>list rooms)" << endl;
+        cout << "Check to see if this rooms really exists (>>list Rooms)" << endl;
     }
 
 }
@@ -254,7 +254,7 @@ int Interface::set(vector<string> command)
     cout << typeid(*interactable_to_change).name() << endl;
 
     //Lights
-    if(typeid(*interactable_to_change).name() == "Lights")
+    if(interactable_to_change->typ == "Lights")
     {
         cout << "Altering the Light" << endl;
         Lights* actor = dynamic_cast<Lights*>(interactable_to_change);
@@ -263,7 +263,7 @@ int Interface::set(vector<string> command)
 
 
 
-    if(typeid(*interactable_to_change).name() == "Door")
+    if(interactable_to_change->type == "Door")
     {
         Door * actor = dynamic_cast<Door*>(interactable_to_change);
         if(member == "lock") {actor->set_state(any_cast<bool>(status));}
@@ -271,21 +271,21 @@ int Interface::set(vector<string> command)
     }
 
     //AC changes
-    if(typeid(*interactable_to_change).name() == "AC_Unit")
+    if(interactable_to_change->typ == "AC_Unit")
     {
         AC_Unit * actor = dynamic_cast<AC_Unit*>(interactable_to_change);
         if(member == "temp") {actor->set_AC_temp(any_cast<float>(status));}
         if(member == "speed") {actor->set_AC_speed(any_cast<int>(status));}
     }
 
-    if(typeid(*interactable_to_change).name() == "Smart_Speaker")
+    if(interactable_to_change->typ == "Smart_Speaker")
     {
         Smart_Speaker * actor = dynamic_cast<Smart_Speaker*>(interactable_to_change);
         if(member == "volume") {actor->set_media_volume(any_cast<int>(status));}
         if(member == "channel") {actor->set_current_channel(status);}
     }
 
-    if(typeid(*interactable_to_change).name() == "Smart_Television")
+    if(interactable_to_change->typ == "Smart_Television")
     {
         Smart_Television * actor = dynamic_cast<Smart_Television*>(interactable_to_change);
         if(member == "volume") {actor->set_media_volume(any_cast<int>(status));}

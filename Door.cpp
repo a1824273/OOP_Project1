@@ -3,6 +3,7 @@
 #include "Door.h"
 
 Door::Door(){
+    type = "Door";
     //default parameter
     locked = false;         //states if the door is locked or unlocked (locked is true)
     if (locked == false){

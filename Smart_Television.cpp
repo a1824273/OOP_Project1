@@ -6,6 +6,7 @@
 
 
 Smart_Television::Smart_Television(){
+    type = "Smart_Television";
     //default media constructor
     the_media_state = false;                            //the volume of the television
     current_television_channel = "No signal";           //states the current channel of the television
@@ -23,6 +24,7 @@ Smart_Television::Smart_Television(){
 }
 
 Smart_Television::Smart_Television(int tv_brightness){
+    type = "Smart_Television";
     //media device constructor with user input
     if (the_media_state == false){
         current_television_channel = "No signal";
