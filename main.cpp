@@ -9,6 +9,5 @@ int main()
     Interface Manager(home);
     Manager.header();
     Manager.console();
-    //Manager.console();
     return 0;
 }

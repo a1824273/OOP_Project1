@@ -30,6 +30,9 @@ Getting Started:
 Viewing Your Home:
 	So you've got some interactable's and now you want to view your home. Look no further than the "list" command.
 
+	To list the rooms in the house:
+	>>> list Rooms
+	
 	To view the contents of a room, use:
 	>>> list [room_name]
 

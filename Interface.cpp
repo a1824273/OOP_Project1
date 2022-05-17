@@ -4,18 +4,12 @@
 
 Interface::Interface(Home * home) :home(home)
 {
-    /*nocbreak();
-    echo();
-    initscr();*/
-    //cout << "\033[%dm %3d\033[m" << endl;
+    //clears the screen and resets the cursor
     cout << "\033[2J \033[H";
-
-    //cout << "\u001b[47;1m" << endl;
-
 }
 Interface::~Interface()
 {
-    //endwin();
+
 }
 
 
@@ -28,7 +22,6 @@ void Interface::header()
     cout << "Enter commands below" << endl;
     cout << "Type \"help\" for command line help" << endl;
     cout << "Type \"exit\" to exit application" << endl;
-    //getch();
 }
 
 void Interface::console()
@@ -41,17 +34,15 @@ void Interface::console()
         command = getCommand();
 
         //Interpret commands
-
         //If exit command leave this loop
 
     } while(runCommand(command));
 
-    //getch();
 };
 
 vector<string> Interface::getCommand()
 {
-    //The actual commadn line that is input,
+    //The actual command line that is input,
     string input;
     //a vector of strings, where each word is an individual element
     vector<string> command;
@@ -93,6 +84,7 @@ bool Interface::runCommand(vector<string> command)
     if(command.at(0) == "set") {set(command); return 1;}
     if(command.at(0) == "list") {list(command); return 1;}
 
+    //If all opptions exhausted, must not be valid
     else {cout << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
     cout << endl;
 }
@@ -102,6 +94,8 @@ void Interface::helpScreen()
     cout << "\u001b[33;1m" << endl;
     cout << "*************************************************************************************************************" << endl;
 
+    //reads in the file Syntax_Guide.txt
+    //this keeps the boring text out of the contesnts of the program itself
     ifstream f("Syntax_Guide.txt");
     if (f.is_open())
         std::cout << f.rdbuf();
@@ -173,27 +167,40 @@ int Interface::add(vector<string> command)
 int Interface::remove(vector<string> command)
 {
 
-
+    //If the command only has one argument, it must be to remove a room
     if(command.size() == 2)
     {
+        //makes handling this string easier
         const string room = command.at(1);
+        //get the room with this name
         Room * roomToRemove = findRoom(room);
+        //check its a real room, if not, let them know and exit
         if (roomToRemove == nullptr) {cout << "No room of name " << room << endl; return 0;}
+        //must be a real room, get rid of it
         home->remove_room(roomToRemove);
         return 1;
     }
+
+    //If the command has 2 arguments, it must be to remove an interactable
     else if(command.size() == 3)
     {
+        //the device and the room
         const string device = command.at(1);
         const string room = command.at(2);
+        //FInd the room,
         Room * roomToRemove = findRoom(room);
+        //check legitness
         if (roomToRemove == nullptr) {cout << "No room of name " << room << endl; return 0;}
+        //find the interactable
         Interactable * interactableToRemove = findInteractable(device, roomToRemove);
+        //check legitness
         if(interactableToRemove == nullptr) {cout << "No interactable of name " << room << endl; return 0;}
+        //must be legit, get rid of it
         roomToRemove->remove_interactable(interactableToRemove);
-
     }
 
+    //Not enough arguments, what are they doing??
+    cout << "Incorrect argument count for \"remove\"" << endl;
 
     return 0;
 }
@@ -227,7 +234,7 @@ int Interface::list(vector<string> command)
     else
     {
         cout << "Unable to list object " << command.at(1) << endl;
-        cout << "Check to see if this room really exists (>>list Rooms)" << endl;
+        cout << "Check to see if this object really exists (e.g. >>list Rooms)" << endl;
     }
 
     return 0;
