@@ -27,7 +27,7 @@ class Interface
       Home * home;
 
   public:
-      //COnstructor takes in a pointer to the home with whcih we will operate on
+      //Constructor takes in a pointer to the home with whcih we will operate on
       Interface(Home * home);
       ~Interface();
       //Clears the screen and produces the header for the screen
