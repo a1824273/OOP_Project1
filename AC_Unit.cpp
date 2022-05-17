@@ -10,6 +10,15 @@ AC_Unit::AC_Unit(){
     AC_temperature = 26.0;          //current temperature of AC unit
     current_fan_speed = 0;          //current fan speed of AC unit
     AC_on_or_off = false;           //states if the AC unit is on or off (on is true)
+    std::cout << "This object is an: " << type << std::endl;
+    std::cout << "The temperature is: " << AC_temperature << std::endl;
+    std::cout << "The current fan speed is: " << current_fan_speed << std::endl;
+    if (AC_on_or_off == true){
+        std::cout << "The AC is now on!" << std::endl;
+    }
+    else {
+        std::cout << "The AC is now off!" <<  std::endl;
+    }
 }
 
 AC_Unit::AC_Unit(float original_temp, int AC_fan_speed, bool AC_on){
