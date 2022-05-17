@@ -2,7 +2,6 @@
 #define INTERFACE_H_
 
 #include <iostream>
-#include <ncurses.h>
 #include <vector>
 #include <sstream>
 #include <any>
