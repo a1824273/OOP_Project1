@@ -88,8 +88,7 @@ bool Interface::runCommand(vector<string> command)
     if(command.at(0) == "list") {list(command); return 1;}
 
     //If all opptions exhausted, must not be valid
-    else {cout << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
-    cout << endl;
+    else {cout << "\u001b[31;1m"  << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
 }
 
 void Interface::helpScreen()
@@ -209,7 +208,7 @@ int Interface::remove(vector<string> command)
         //get the room with this name
         Room * roomToRemove = findRoom(room);
         //check its a real room, if not, let them know and exit
-        if (roomToRemove == nullptr) {cout << "No room of name " << room << endl; return 0;}
+        if (roomToRemove == nullptr) {cout << "\u001b[31;1m"  << "No room of name " << room << endl; return 0;}
         //must be a real room, get rid of it
         home->remove_room(roomToRemove);
         return 1;
@@ -224,11 +223,11 @@ int Interface::remove(vector<string> command)
         //FInd the room,
         Room * roomToRemove = findRoom(room);
         //check legitness
-        if (roomToRemove == nullptr) {cout << "No room of name " << room << endl; return 0;}
+        if (roomToRemove == nullptr) {cout << "\u001b[31;1m"  << "No room of name " << room << endl; return 0;}
         //find the interactable
         Interactable * interactableToRemove = findInteractable(device, roomToRemove);
         //check legitness
-        if(interactableToRemove == nullptr) {cout << "No interactable of name " << room << endl; return 0;}
+        if(interactableToRemove == nullptr) {cout << "\u001b[31;1m" << "No interactable of name " << room << endl; return 0;}
         //must be legit, get rid of it
         roomToRemove->remove_interactable(interactableToRemove);
         return 1;
