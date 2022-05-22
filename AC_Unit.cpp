@@ -93,6 +93,7 @@ void AC_Unit::set_AC_speed(int AC_fan_speed){
     //setting AC fan speed
     //current fan speed has to be between 1 and 5, both inclusive
     if ((AC_fan_speed >= 1 && AC_fan_speed <= 5) || (AC_on_or_off == true)){
+        std::cout << "The speed has been set to " << AC_fan_speed << "." << std::endl;
         current_fan_speed = AC_fan_speed;
     }
     else{

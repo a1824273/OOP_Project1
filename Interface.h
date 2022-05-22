@@ -7,7 +7,6 @@
 #include <any>
 #include <utility>
 #include <fstream>
-#include <boost/lexical_cast.hpp>
 
 
 #include "Room.h"
@@ -66,8 +65,8 @@ class Interface
       int list(vector<string> command);
 
       //Checks if input is of deisred data type
-      bool isInt(const std::string &input);
-      bool isFloat(const std::string &input);
+      bool isInt(string input);
+      bool isFloat(string input);
 
 
 

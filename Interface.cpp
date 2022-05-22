@@ -480,36 +480,20 @@ int Interface::set(vector<string> command)
 //i do not know what they do
 //i do not know how they work
 //but i do know, they work
-bool Interface::isFloat(const std::string &input)
+bool Interface::isFloat(string input)
 {
-  using boost::lexical_cast;
-  using boost::bad_lexical_cast;
-
-  try
-  {
-    boost::lexical_cast<float>(input);
-  }
-  catch (bad_lexical_cast &)
-  {
-    return false;
-  }
-
-  return true;
+    std::istringstream iss(input);
+    float f;
+    iss >> noskipws >> f; // noskipws considers leading whitespace invalid
+    // Check the entire string was consumed and if either failbit or badbit is set
+    return iss.eof() && !iss.fail();
 }
 
-bool Interface::isInt(const std::string &input)
+bool Interface::isInt(string input)
 {
-  using boost::lexical_cast;
-  using boost::bad_lexical_cast;
-
-  try
-  {
-    boost::lexical_cast<int>(input);
-  }
-  catch (bad_lexical_cast &)
-  {
-    return false;
-  }
-
-  return true;
+    std::istringstream iss(input);
+    int f;
+    iss >> noskipws >> f; // noskipws considers leading whitespace invalid
+    // Check the entire string was consumed and if either failbit or badbit is set
+    return iss.eof() && !iss.fail();
 }
