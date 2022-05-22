@@ -36,23 +36,31 @@ Lights::Lights(std::string light_colour, bool state_of_light){
 void Lights::set_state(bool light_state){
     //change the state of the light (i.e. on or off)
     light_on_state = light_state;
-
-}
-
-bool Lights::get_state(){
-    //return the state of the light
     if (light_on_state == true){
         std::cout << "The light is on" << std::endl;
     }
     else{
         std::cout << "The light is off" << std::endl;
     }
+}
+
+bool Lights::get_state(){
+    //return the state of the light
     return light_on_state;
 }
 
 void Lights::set_colour(std::string colour){
     //change the colour of the light
-    the_light_colour = colour;
+    if ((colour == "Red") || (colour == "Orange") || (colour == "Yellow") || (colour == "Green")
+        ||(colour == "Blue") || (colour == "Indigo") || (colour == "Violet")){
+        the_light_colour = colour;
+    }
+    else{
+        the_light_colour = "white";
+        std::cout << "This input is not accepted. Choose from Red, Orange, Yellow, Green, Blue, Indigo or Violet." << std::endl;
+    }
+    
+    std::cout << "The lights colour is: " << the_light_colour << "." << std::endl;
 }
 
 std::string Lights::get_colour(){

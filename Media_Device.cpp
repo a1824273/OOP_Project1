@@ -13,10 +13,10 @@ Media_Device::Media_Device(bool media_state, int media_volume_level, std::string
     //media device with user input
     //media state level
     the_media_state = media_state;
-    if (the_media_state == true){
+    if (media_state == true){
         std::cout << "The media device is on" << std::endl;
     }
-    else if(the_media_state == true){
+    else if(media_state == false){
         std::cout << "The media device is off" << std::endl;
     }
     //media volume level
@@ -35,7 +35,7 @@ Media_Device::Media_Device(bool media_state, int media_volume_level, std::string
 }
 
 void Media_Device::set_media_state(bool media_state){
-    //settin media state
+    //setting media state
     the_media_state = media_state;
     if (media_state == true){
         std::cout << "The media device is on!" << std::endl;
@@ -84,7 +84,7 @@ void Media_Device::print(){
     if (the_media_state == true){
         std::cout << "The media device is on" << std::endl;
     }
-    else if(the_media_state == true){
+    else if(the_media_state == false){
         std::cout << "The media device is off" << std::endl;
     }
     std::cout << "The device's volume is: " << the_media_volume_level << std::endl;
