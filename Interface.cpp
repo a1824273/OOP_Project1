@@ -7,6 +7,7 @@ Interface::Interface(Home * home) :home(home)
     //clears the screen and resets the cursor
     cout << "\033[2J \033[H";
 }
+
 Interface::~Interface()
 {
 
@@ -248,20 +249,33 @@ int Interface::list(vector<string> command)
 {
     //const string object_to_list = command.at(1);
 
+    if(command.size() < 2)
+    {
+        cout << "\u001b[31;1m" << endl;
+        cout << "Cannot process \"list\" command" << endl;
+        cout << "Follow \"list\" command syntax:" << endl;
+        cout << endl;
+        cout << "list Rooms" << endl;
+        cout << "or" << endl;
+        cout << "list [interactable_name] [room_name]" << endl;
+        cout << endl;
+        return 0;
+    }
+
     //Lists the rooms in the house
     if(command.at(1) == "Rooms")
     {
         home->list_rooms();
     }
 
-    //Lists the devices i the specified room
+    //Lists the devices in the specified room
     else if(findRoom(command.at(1)) != nullptr)
     {
         Room * room_to_list = findRoom(command.at(1));
         room_to_list->list_interactables();
     }
 
-    else if(command.size() == 3)
+    else if((command.size() == 3) && (findRoom(command.at(2)) != nullptr))
     {
         Interactable * device_to_print = findInteractable(command.at(1), findRoom(command.at(2)));
         if(device_to_print == NULL) {cout << "No device called " << command.at(1) << " in " << command.at(2) << endl; return 0;}
@@ -273,6 +287,13 @@ int Interface::list(vector<string> command)
         cout << "\u001b[31;1m" << endl;
         cout << "Unable to list object " << command.at(1) << endl;
         cout << "Check to see if this object really exists (e.g. >>list Rooms)" << endl;
+
+        cout << "Follow \"list\" command syntax:" << endl;
+        cout << endl;
+        cout << "list Rooms" << endl;
+        cout << "or" << endl;
+        cout << "list [interactable_name] [room_name]" << endl;
+        cout << endl;
     }
 
     return 0;
@@ -351,19 +372,26 @@ int Interface::set(vector<string> command)
         //if(member == "open") {actor->set_state(status)}
     }
 
+
     //AC changes
     if(interactable_to_change->type == "AC_Unit")
     {
+        //dynamic cast so we knwo what we're working on here
         AC_Unit * actor = dynamic_cast<AC_Unit*>(interactable_to_change);
+
+        //Chanegs to the temp variable
         if(member == "temp")
         {
+            //checls the user input to make sure it is of the right type
             if(isFloat(status))
             {
+                //enacts this change on the value through the member function and returns
                 actor->set_AC_temp(stof(status));
                 return 1;
             }
             else
             {
+                //user input was obviously absolute rubbish. tell them what they need to input
                 cout  << "\u001b[31;1m" << "Temperature Input \"" << status << "\" is not of required type - floating point number" << endl;
                 return 0;
             }
@@ -371,7 +399,7 @@ int Interface::set(vector<string> command)
 
         if(member == "speed")
         {
-            if(isInt)
+            if(isInt(status))
             {
                 actor->set_AC_speed(stoi(status));
                 return 1;
@@ -443,6 +471,14 @@ int Interface::set(vector<string> command)
     return 0;
 }
 
+
+
+
+
+//These functions are utlilies taken solely to confirm the data types do each of the input values
+//i do not know what they do
+//i do not know how they work
+//but i do know, they work
 bool Interface::isFloat(const std::string &input)
 {
   using boost::lexical_cast;
