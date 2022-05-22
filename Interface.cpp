@@ -143,13 +143,6 @@ int Interface::add(vector<string> command)
     {
         cout << "\u001b[31;1m" << endl;
         cout << "Cannot process \"add\" command" << endl;
-        cout << "Follow \"add\" command syntax:" << endl;
-        cout << endl;
-        cout << "add Room [room_name]" << endl;
-        cout << "or" << endl;
-        cout << "add [interactable_type] [interactable_name] [room_name]" << endl;
-        cout << endl;
-        return 0;
     }
 
     //Add Room
@@ -167,42 +160,46 @@ int Interface::add(vector<string> command)
     {
         cout << "\u001b[31;1m" << endl;
         cout << "No type to add: \"" << command.at(1) << "\" OR insufficient Command Length to add Interactable device of type: " << command.at(1) << endl;
-        cout << "Follow \"add\" command syntax:" << endl;
-        cout << endl;
-        cout << "add Room [room_name]" << endl;
-        cout << "or" << endl;
-        cout << "add [interactable_type] [interactable_name] [room_name]" << endl;
-        cout << endl;
-        return 0;
     }
 
     //Add Device
     //gets a pointer to the rooms we want to operate in
     Room * deviceRoom = findRoom(command.at(3));
+    //If this pointer is null we've got an error
     if(deviceRoom == nullptr)
     {
         cout << "\u001b[31;1m" << endl;
         cout << "No rooms of name: " << command.at(3) << endl;
-        cout << endl;
-        cout << "Follow \"add\" command syntax:" << endl;
-        cout << endl;
-        cout << "add Room [room_name]" << endl;
-        cout << "or" << endl;
-        cout << "add [interactable_type] [interactable_name] [room_name]" << endl;
-        cout << endl;
-        return 0;
+    }
+    else
+    {
+        //Pass first of all a string dictating the type of object
+        //Pass second the name of the device to create
+        //This will be used to create a device of the required type in the correct room
+        deviceRoom->add_interactable(command.at(1), command.at(2));
+        return 1;
     }
 
-    //Pass first of all a string dictating the type of object
-    //Pass second the name of the device to create
-    //This will be used to create a device of the required type in the correct room
-    deviceRoom->add_interactable(command.at(1), command.at(2));
-    return 1;
+    cout << endl;
+    cout << "Follow \"add\" command syntax:" << endl;
+    cout << endl;
+    cout << "add Room [room_name]" << endl;
+    cout << "or" << endl;
+    cout << "add [interactable_type] [interactable_name] [room_name]" << endl;
+    cout << endl;
+
+    return 0;
 }
 
 
 int Interface::remove(vector<string> command)
 {
+
+    if(command.size() < 2)
+    {
+        cout << "\u001b[31;1m" << endl;
+        cout << "Incorrect argument count for \"remove\"" << endl;
+    }
 
     //If the command only has one argument, it must be to remove a room
     if(command.size() == 2)
@@ -234,11 +231,16 @@ int Interface::remove(vector<string> command)
         if(interactableToRemove == nullptr) {cout << "No interactable of name " << room << endl; return 0;}
         //must be legit, get rid of it
         roomToRemove->remove_interactable(interactableToRemove);
+        return 1;
     }
 
-    //Not enough arguments, what are they doing??
-    cout << "\u001b[31;1m" << endl;
-    cout << "Incorrect argument count for \"remove\"" << endl;
+    //Theyve done something wroing as the fuciton hasnt returned yet, tell them how to do thisa properl;y
+    cout << "Follow \"remove\" command syntax:" << endl;
+    cout << endl;
+    cout << "remove [room_name]" << endl;
+    cout << "or" << endl;
+    cout << "remove [interactable_name] [room_name]" << endl;
+    cout << endl;
 
     return 0;
 }
@@ -313,7 +315,7 @@ int Interface::set(vector<string> command)
     4: status to set it to
     */
 
-    if(command.size() != 5)
+    if(command.size() < 5)
     {
         cout << "\u001b[31;1m" << endl;
         cout << "Incorrect command length" << endl;
