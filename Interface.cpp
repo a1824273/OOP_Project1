@@ -29,8 +29,10 @@ void Interface::console()
     vector<string> command;
     do
     {
-        cout << "\u001b[0m";
+        cout << "\u001b[36;1m";
         cout << ">>> ";
+        //sets the input colour to white
+        cout << "\u001b[0m";
         command = getCommand();
 
         //Interpret commands
@@ -136,7 +138,18 @@ Interactable * Interface::findInteractable(string deviceName, Room * roomToLookI
 
 int Interface::add(vector<string> command)
 {
-    if(command.size() < 3) {cout << "Insufficient Command Length" << endl; return 0;}
+    if(command.size() < 3)
+    {
+        cout << "\u001b[31;1m" << endl;
+        cout << "Cannot process \"add\" command" << endl;
+        cout << "Follow \"add\" command syntax:" << endl;
+        cout << endl;
+        cout << "add Room [room_name]" << endl;
+        cout << "or" << endl;
+        cout << "add [interactable_type] [interactable_name] [room_name]" << endl;
+        cout << endl;
+        return 0;
+    }
 
     //Add Room
     if(command.at(1) == "Room")
@@ -149,12 +162,35 @@ int Interface::add(vector<string> command)
     }
 
     //now need to change the command check length as all other commands are bigger
-    if(command.size() < 4) {cout << "Insufficient Command Length to add Interactable device of type: " << command.at(1) << endl; return 0;}
+    if(command.size() < 4)
+    {
+        cout << "\u001b[31;1m" << endl;
+        cout << "No type to add: \"" << command.at(1) << "\" OR insufficient Command Length to add Interactable device of type: " << command.at(1) << endl;
+        cout << "Follow \"add\" command syntax:" << endl;
+        cout << endl;
+        cout << "add Room [room_name]" << endl;
+        cout << "or" << endl;
+        cout << "add [interactable_type] [interactable_name] [room_name]" << endl;
+        cout << endl;
+        return 0;
+    }
 
     //Add Device
     //gets a pointer to the rooms we want to operate in
     Room * deviceRoom = findRoom(command.at(3));
-    if(deviceRoom == nullptr) {cout << "No rooms of name: " << command.at(3) << endl; return 0;}
+    if(deviceRoom == nullptr)
+    {
+        cout << "\u001b[31;1m" << endl;
+        cout << "No rooms of name: " << command.at(3) << endl;
+        cout << endl;
+        cout << "Follow \"add\" command syntax:" << endl;
+        cout << endl;
+        cout << "add Room [room_name]" << endl;
+        cout << "or" << endl;
+        cout << "add [interactable_type] [interactable_name] [room_name]" << endl;
+        cout << endl;
+        return 0;
+    }
 
     //Pass first of all a string dictating the type of object
     //Pass second the name of the device to create
@@ -200,6 +236,7 @@ int Interface::remove(vector<string> command)
     }
 
     //Not enough arguments, what are they doing??
+    cout << "\u001b[31;1m" << endl;
     cout << "Incorrect argument count for \"remove\"" << endl;
 
     return 0;
@@ -233,6 +270,7 @@ int Interface::list(vector<string> command)
 
     else
     {
+        cout << "\u001b[31;1m" << endl;
         cout << "Unable to list object " << command.at(1) << endl;
         cout << "Check to see if this object really exists (e.g. >>list Rooms)" << endl;
     }
@@ -256,7 +294,12 @@ int Interface::set(vector<string> command)
 
     if(command.size() != 5)
     {
+        cout << "\u001b[31;1m" << endl;
         cout << "Incorrect command length" << endl;
+        cout << "Follow \"set\" command syntax:" << endl;
+        cout << endl;
+        cout << "set [interactable_name] [room_name] [property] [status]" << endl;
+        cout << endl;
         return 0;
     }
 
@@ -269,10 +312,10 @@ int Interface::set(vector<string> command)
 
     //find the room,s to work in
     Room * deviceRoom = findRoom(interactable_room);
-    if(deviceRoom == nullptr) {cout << "No Room exists of name: \"" << interactable_room << "\"" << endl; return 0;}
+    if(deviceRoom == nullptr) {cout << "\u001b[31;1m" << "No Room exists of name: \"" << interactable_room << "\"" << endl; return 0;}
     //find the interactable to work on
     Interactable * interactable_to_change = findInteractable(interactable_name, deviceRoom);
-    if(interactable_to_change == nullptr) {cout << "No Interactable exists of name: \"" << interactable_name << "\" " << "in \"" << interactable_room << "\"" << endl; return 0;}
+    if(interactable_to_change == nullptr) {cout << "\u001b[31;1m" << "No Interactable exists of name: \"" << interactable_name << "\" " << "in \"" << interactable_room << "\"" << endl; return 0;}
 
 
     //handles universal on/off functions
@@ -280,7 +323,7 @@ int Interface::set(vector<string> command)
     {
         if(status == "on") {interactable_to_change->set_state(1); return 1;}
         else if (status == "off") {interactable_to_change->set_state(0); return 1;}
-        else {cout << "Invalid on/off parameter" << endl;}
+        else {cout  << "\u001b[31;1m" << "Invalid on/off parameter\n Please choose from either [on] or [off]\n" << endl;}
     }
 
     if(member == "name") {interactable_to_change->set_name(status); return 1;}
@@ -312,26 +355,124 @@ int Interface::set(vector<string> command)
     if(interactable_to_change->type == "AC_Unit")
     {
         AC_Unit * actor = dynamic_cast<AC_Unit*>(interactable_to_change);
-        if(member == "temp") {actor->set_AC_temp(stof(status)); return 1;}
-        if(member == "speed") {actor->set_AC_speed(stoi(status)); return 1;}
+        if(member == "temp")
+        {
+            if(isFloat(status))
+            {
+                actor->set_AC_temp(stof(status));
+                return 1;
+            }
+            else
+            {
+                cout  << "\u001b[31;1m" << "Temperature Input \"" << status << "\" is not of required type - floating point number" << endl;
+                return 0;
+            }
+        }
+
+        if(member == "speed")
+        {
+            if(isInt)
+            {
+                actor->set_AC_speed(stoi(status));
+                return 1;
+            }
+            else
+            {
+                cout  << "\u001b[31;1m" << "Speed Input \"" << status << "\" is not of required type - integer" << endl;
+                return 0;
+            }
+        }
     }
 
-    if(interactable_to_change->type == "Smart_Speaker")
+    if(interactable_to_change->type == "Smart_Speaker" )
     {
         Smart_Speaker * actor = dynamic_cast<Smart_Speaker*>(interactable_to_change);
-        if(member == "volume") {actor->set_media_volume(stoi(status)); return 1;}
+        if(member == "volume")
+        {
+            if(isInt(status))
+            {
+                actor->set_media_volume(stoi(status));
+                return 1;
+            }
+            else
+            {
+                cout  << "\u001b[31;1m" << "Volume Input \"" << status << "\" is not of required type - integer" << endl;
+                return 0;
+            }
+        }
+
         if(member == "channel") {actor->set_current_channel(status); return 1;}
     }
 
     if(interactable_to_change->type == "Smart_Television")
     {
         Smart_Television * actor = dynamic_cast<Smart_Television*>(interactable_to_change);
-        if(member == "volume") {actor->set_media_volume(stoi(status)); return 1;}
+        if(member == "volume")
+        {
+            if(isInt(status))
+            {
+                actor->set_media_volume(stoi(status));
+                return 1;
+            }
+            else
+            {
+                cout  << "\u001b[31;1m" << "Volume Input \"" << status << "\" is not of required type - integer" << endl;
+                return 0;
+            }
+        }
+
         if(member == "channel") {actor->set_current_channel(status); return 1;}
-        if(member == "brightness") {actor->set_brightness_level(stoi(status)); return 1;}
+
+        if(member == "brightness")
+        {
+            if(isInt(status))
+            {
+                actor->set_brightness_level(stoi(status));
+                return 1;
+            }
+            else
+            {
+                cout  << "\u001b[31;1m" << "Brightness Input \"" << status << "\" is not of required type - integer" << endl;
+                return 0;
+            }
+        }
     }
 
-    cout << "Interactable Property " << member << " does not exist" << endl;
+    cout << "\u001b[31;1m" << "Interactable Property " << member << " does not exist" << endl;
 
     return 0;
+}
+
+bool Interface::isFloat(const std::string &input)
+{
+  using boost::lexical_cast;
+  using boost::bad_lexical_cast;
+
+  try
+  {
+    boost::lexical_cast<float>(input);
+  }
+  catch (bad_lexical_cast &)
+  {
+    return false;
+  }
+
+  return true;
+}
+
+bool Interface::isInt(const std::string &input)
+{
+  using boost::lexical_cast;
+  using boost::bad_lexical_cast;
+
+  try
+  {
+    boost::lexical_cast<int>(input);
+  }
+  catch (bad_lexical_cast &)
+  {
+    return false;
+  }
+
+  return true;
 }

@@ -32,7 +32,7 @@ Viewing Your Home:
 
 	To list the rooms in the house:
 	>>> list Rooms
-	
+
 	To view the contents of a room, use:
 	>>> list [room_name]
 
@@ -53,11 +53,11 @@ Removing a Room or Interactable:
 
 
 Changing Device Properies:
-	So you can make and look at interactables, but what about doing something weith them?
+	So you can make and look at interactables, but what about doing something with them?
 	This is where the set command comes in.
 	This command has one implementation but follows a strict syntax:
 
-	>>> set [interactable_name] [room_name] [property] [status] 
+	>>> set [interactable_name] [room_name] [property] [status]
 
 	Each type of interactable has it's own properties and subsequent values and these are explored below.
 
@@ -85,7 +85,7 @@ lock: lock
 
 
 AC_Unit:
-Controls for onoff, the speed and temperature 
+Controls for onoff, the speed and temperature
 
 onoff: on
 	   off
@@ -116,4 +116,3 @@ channel: accepts a string correlating to the desired channel
 Smart_Television Exclusive:
 brightness: accepts and integer between 0 and 5
 	e.g. >>> set TV Office brightness 3
-
