@@ -1,9 +1,9 @@
 #ifndef LISTABLE_H_
 #define LISTABLE_H_
 
-class LISTABLE_H_{
+class Listable{
 public:
-    void list() = 0;
-}
+    virtual void list() = 0;
+};
 
 #endif
