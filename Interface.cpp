@@ -86,7 +86,8 @@ bool Interface::runCommand(vector<string> command)
     if(command.at(0) == "remove") {remove(command); return 1;}
     if(command.at(0) == "set") {set(command); return 1;}
     if(command.at(0) == "list") {list(command); return 1;}
-    //if(command.at(0) == "write") {write(command.at(1)); return 1;}
+    if(command.at(0) == "write") {write(command.at(1)); return 1;}
+    if(command.at(0) == "read") {read(command.at(1)); return 1;}
 
     //If all opptions exhausted, must not be valid
     else {cout << "\u001b[31;1m"  << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
@@ -476,22 +477,22 @@ int Interface::set(vector<string> command)
 
     return 0;
 }
-/*
+
 void Interface::read(string savename)
 {
     ifstream inFile(savename + ".txt");
     if(inFile.good())
     {
         string input;
-        //a vector of strings, where each word is an individual element
-        vector<string> line;
-        string currentRoom;
-        do
+        int roomCount = -1;
+        while(getline(inFile,input))
         {
 
+            //a vector of strings, where each word is an individual element
+            vector<string> line;
+            string currentRoom;
 
-            //Gets line entire line from cin and stores it in input
-            getline(cin,input);
+            cout << "Read in a line" << endl;
             //some magic
             istringstream ss(input);
 
@@ -501,47 +502,51 @@ void Interface::read(string savename)
             //reads each word of the input in and spilts it at the delimiter ' '
             while(getline(ss, del, ' '))
             {
-              command.push_back(del);
+              line.push_back(del);
             }
 
             //This means it is a room
             if(line.size() == 2 && line.at(0) == "Room")
             {
-                home.add_room(line.at(1));
+                home->add_room(line.at(1));
                 currentRoom = line.at(1);
+                roomCount++;
             }
             else
             {
 
                 if(line.at(0) == "Lights")
                 {
-                    Lights *CreatedLight = new Lights(line.at(3), line.at(2));
+                    Lights *CreatedLight = new Lights(line.at(3), stoi(line.at(2)));
                     CreatedLight->set_name(line.at(1));
-                    findRoom(currentRoom)->interactables->push_back(CreatedLight);
+                    home->rooms->at(roomCount)->interactables->push_back(CreatedLight);
                 }
 
                 if(line.at(0) == "Door")
                 {
-                    Door *CreatedDoor = new Door(line.at(2));
+                    Door *CreatedDoor = new Door(stoi(line.at(2)));
                     CreatedDoor->set_name(line.at(1));
-                    findRoom(currentRoom)->interactables->push_back(CreatedDoor);
+                    home->rooms->at(roomCount)->interactables->push_back(CreatedDoor);
                 }
 
                 if(line.at(0) == "AC_Unit")
                 {
                     AC_Unit *CreatedAC = new AC_Unit(stof(line.at(3)), stoi(line.at(4)), stoi(line.at(2)));
+                    cout << "constructor success" << endl;
                     CreatedAC->set_name(line.at(1));
-                    findRoom(currentRoom)->interactables->push_back(CreatedAC);
+                    cout << "set name success" << endl;
+                    home->rooms->at(roomCount)->interactables->push_back(CreatedAC);
+                    cout << "added to vecotr" << endl;
                 }
 
                 if(line.at(0) == "Smart_Television")
                 {
-                    Smart_Television *CreatedSmart_Television = new Smart_Television(line.at(5));
+                    Smart_Television *CreatedSmart_Television = new Smart_Television(stoi(line.at(5)));
                     CreatedSmart_Television->set_name(line.at(1));
                     CreatedSmart_Television->set_state(stoi(line.at(2)));
                     CreatedSmart_Television->set_current_channel(line.at(3));
                     CreatedSmart_Television->set_media_volume(stoi(line.at(4)));
-                    findRoom(currentRoom)->interactables->push_back(CreatedSmart_Television);
+                    home->rooms->at(roomCount)->interactables->push_back(CreatedSmart_Television);
                 }
 
                 if(line.at(0) == "Smart_Speaker")
@@ -549,22 +554,20 @@ void Interface::read(string savename)
                     Smart_Speaker *CreatedSmart_Speaker = new Smart_Speaker;
                     CreatedSmart_Speaker->set_name(line.at(1));
                     CreatedSmart_Speaker->set_state(stoi(line.at(2)));
-                    CreatedSmart_Television->set_current_channel(line.at(3));
-                    CreatedSmart_Television->set_media_volume(stoi(line.at(4)));
-                    findRoom(currentRoom)->interactables->push_back(CreatedSmart_Speaker);
+                    CreatedSmart_Speaker->set_current_channel(line.at(3));
+                    CreatedSmart_Speaker->set_media_volume(stoi(line.at(4)));
+                    home->rooms->at(roomCount)->interactables->push_back(CreatedSmart_Speaker);
                 }
             }
-
-
-        }while(input != EOF);
-
+        }
     }
+
     else
     {
         cout << "No saved home found of name " << savename << "." << endl;
     }
 }
-*/
+
 void Interface::write(string savename)
 {
     ofstream saveFile;
