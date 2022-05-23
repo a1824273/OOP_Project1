@@ -476,7 +476,7 @@ int Interface::set(vector<string> command)
 
     return 0;
 }
-
+/*
 void Interface::read(string savename)
 {
     ifstream inFile(savename + ".txt");
@@ -514,7 +514,7 @@ void Interface::read(string savename)
     {
         cout << "No saved home found of name " << savename << "." << endl;
     }
-}
+}*/
 
 void Interface::write(string savename)
 {
