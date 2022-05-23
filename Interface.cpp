@@ -559,7 +559,7 @@ void Interface::write(string savename)
         }
     }
 
-    cout << "Smart Home saved into " << savename << ".txt" << end;
+    cout << "Smart Home saved into " << savename << ".txt" << endl;
     saveFile.close();
 }
 
