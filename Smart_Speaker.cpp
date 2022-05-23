@@ -68,12 +68,12 @@ void Smart_Speaker::set_media_volume(int media_volume_level){
     std::cout << "The speaker volume: " << smart_speaker_volume << std::endl;
 }
 
-int Smart_Speaker::get_speaker_volume(){
+int Smart_Speaker::get_media_volume(){
     //getting the speaker volume
     return smart_speaker_volume;
 }
 
-void Smart_Speaker::set_current_channel(std::string new_channel){
+void Smart_Speaker::set_media_channel(std::string new_channel){
     //changing the current channel
     if (state == true){
         current_speaker_channel = new_channel;
@@ -88,6 +88,7 @@ std::string Smart_Speaker::get_current_channel(){
     //getting the current channel
     return current_speaker_channel;
 }
+
 
 //making the functions specific to this class
 

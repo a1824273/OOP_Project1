@@ -74,7 +74,7 @@ void Smart_Television::set_media_volume(int media_volume_level){
     std::cout << "The television is playing at volume " << smart_television_volume << std::endl;
 }
 
-int Smart_Television::get_television_volume(){
+int Smart_Television::get_media_volume(){
     //getting the television volume
     return smart_television_volume;
 }

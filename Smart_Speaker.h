@@ -25,9 +25,9 @@ public:
     //inherited functions
     //setting the speaker volume, between 0 and 100 inclusive
     void set_media_volume(int media_volume_level);
-    
+
     //getting the speaker volume
-    int get_speaker_volume();
+    int get_media_volume();
 
     //changing the current channel
     void set_current_channel(std::string new_channel);

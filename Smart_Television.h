@@ -25,16 +25,16 @@ public:
     //inherited functions
     //changing the televison volume, between 0-100 inclusive
     void set_media_volume(int media_volume_level);
-    
+
     //getting the television volume
-    int get_television_volume();
+    int get_media_volume();
 
     //changing the current channel
     void set_current_channel(std::string new_channel);
 
     //getting the current channel
     std::string get_current_channel();
-    
+
     //function specific to the smart television class
 
     //changing the brigthness of the televison
@@ -45,7 +45,7 @@ public:
 
     //printing all current infomation of the smart television
     void print();
-    
+
     //default Smart_Television destructor
     ~Smart_Television();
 };
