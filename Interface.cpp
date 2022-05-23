@@ -485,37 +485,80 @@ void Interface::read(string savename)
         string input;
         //a vector of strings, where each word is an individual element
         vector<string> line;
-
-        //Gets line entire line from cin and stores it in input
-        getline(cin,input);
-        //some magic
-        istringstream ss(input);
-
-        //the string that will store the individual pieces and push them into the vector
-        string del;
-
-        //reads each word of the input in and spilts it at the delimiter ' '
-        while(getline(ss, del, ' '))
+        string currentRoom;
+        do
         {
-          command.push_back(del);
-        }
-
-        //This means it is a room
-        if(line.size() == 2)
-        {
-            home
-        }
 
 
+            //Gets line entire line from cin and stores it in input
+            getline(cin,input);
+            //some magic
+            istringstream ss(input);
 
+            //the string that will store the individual pieces and push them into the vector
+            string del;
+
+            //reads each word of the input in and spilts it at the delimiter ' '
+            while(getline(ss, del, ' '))
+            {
+              command.push_back(del);
+            }
+
+            //This means it is a room
+            if(line.size() == 2 && line.at(0) == "Room")
+            {
+                home.add_room(line.at(1));
+                currentRoom = line.at(1);
+            }
+            else
+            {
+
+                if(line.at(0) == "Lights")
+                {
+                    Lights *CreatedLight = new Lights(line.at(3), line.at(2));
+                    CreatedLight->set_name(line.at(1));
+                    findRoom(currentRoom)->interactables->push_back(CreatedLight);
+                }
+
+                if(line.at(0) == "Door")
+                {
+                    Door *CreatedDoor = new Door(line.at(2));
+                    CreatedDoor->set_name(line.at(1));
+                    findRoom(currentRoom)->interactables->push_back(CreatedDoor);
+                }
+
+                if(line.at(0) == "AC_Unit")
+                {
+                    AC_Unit *CreatedAC = new AC_Unit(line.at(3), line.at(4), line.at(2));
+                    CreatedAC->set_name(line.at(1));
+                    findRoom(currentRoom)->interactables->push_back(CreatedAC);
+                }
+
+                if(line.at(0) == "Smart_Television")
+                {
+                    Smart_Television *CreatedSmart_Television = new Smart_Television();
+                    CreatedSmart_Television->set_name(line.at(1));
+                    findRoom(currentRoom)->interactables->push_back(CreatedSmart_Television);
+                }
+
+                if(line.at(0) == "Smart_Speaker")
+                {
+                    Smart_Speaker *CreatedSmart_Speaker = new Smart_Speaker;
+                    CreatedSmart_Speaker->set_name(line.at(1));
+                    findRoom(currentRoom)->interactables->push_back(CreatedSmart_Speaker);
+                }
+            }
+
+
+        }while(input != EOF);
 
     }
     else
     {
         cout << "No saved home found of name " << savename << "." << endl;
     }
-}*/
-
+}
+*/
 void Interface::write(string savename)
 {
     ofstream saveFile;

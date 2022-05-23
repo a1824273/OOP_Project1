@@ -29,13 +29,13 @@ public:
     virtual void set_media_volume(int media_volume_level);
 
     //getting media volume level
-    int get_media_volume();
+    virtual int get_media_volume();
 
     //changing the channel
     virtual void set_current_channel(std::string new_channel);
 
     //getting the current channel
-    std::string get_current_channel();
+    virtual std::string get_current_channel();
 
     //printing all current infomation of the media device
     void print();
