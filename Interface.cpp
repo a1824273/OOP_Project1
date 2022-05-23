@@ -483,77 +483,83 @@ void Interface::read(string savename)
     ifstream inFile(savename + ".txt");
     if(inFile.good())
     {
-        string input;
-        int roomCount = -1;
-        while(getline(inFile,input))
+        if(home->rooms->size() > 0)
         {
-
-            //a vector of strings, where each word is an individual element
-            vector<string> line;
-            string currentRoom;
-
-            cout << "Read in a line" << endl;
-            //some magic
-            istringstream ss(input);
-
-            //the string that will store the individual pieces and push them into the vector
-            string del;
-
-            //reads each word of the input in and spilts it at the delimiter ' '
-            while(getline(ss, del, ' '))
+            cout << "You can't read in an existing home on top of this one!" << endl;
+            cout << "If you want to read that home in, either create a new instance of the interface, or delete all remaining rooms" << endl;
+        }
+        else
+        {
+            string input;
+            int roomCount = -1;
+            while(getline(inFile,input))
             {
-              line.push_back(del);
-            }
+                //a vector of strings, where each word is an individual element
+                vector<string> line;
+                string currentRoom;
 
-            //This means it is a room
-            if(line.size() == 2 && line.at(0) == "Room")
-            {
-                home->add_room(line.at(1));
-                currentRoom = line.at(1);
-                roomCount++;
-            }
-            else
-            {
+                //some magic
+                istringstream ss(input);
 
-                if(line.at(0) == "Lights")
+                //the string that will store the individual pieces and push them into the vector
+                string del;
+
+                //reads each word of the input in and spilts it at the delimiter ' '
+                while(getline(ss, del, ' '))
                 {
-                    Lights *CreatedLight = new Lights(line.at(3), stoi(line.at(2)));
-                    CreatedLight->set_name(line.at(1));
-                    home->rooms->at(roomCount)->interactables->push_back(CreatedLight);
+                  line.push_back(del);
                 }
 
-                if(line.at(0) == "Door")
+                //This means it is a room
+                if(line.size() == 2 && line.at(0) == "Room")
                 {
-                    Door *CreatedDoor = new Door(stoi(line.at(2)));
-                    CreatedDoor->set_name(line.at(1));
-                    home->rooms->at(roomCount)->interactables->push_back(CreatedDoor);
+                    home->add_room(line.at(1));
+                    currentRoom = line.at(1);
+                    roomCount++;
                 }
-
-                if(line.at(0) == "AC_Unit")
+                else
                 {
-                    AC_Unit *CreatedAC = new AC_Unit(stof(line.at(3)), stoi(line.at(4)), stoi(line.at(2)));
-                    CreatedAC->set_name(line.at(1));
-                    home->rooms->at(roomCount)->interactables->push_back(CreatedAC);
-                }
 
-                if(line.at(0) == "Smart_Television")
-                {
-                    Smart_Television *CreatedSmart_Television = new Smart_Television(stoi(line.at(5)));
-                    CreatedSmart_Television->set_name(line.at(1));
-                    CreatedSmart_Television->set_state(stoi(line.at(2)));
-                    CreatedSmart_Television->set_current_channel(line.at(3));
-                    CreatedSmart_Television->set_media_volume(stoi(line.at(4)));
-                    home->rooms->at(roomCount)->interactables->push_back(CreatedSmart_Television);
-                }
+                    if(line.at(0) == "Lights")
+                    {
+                        Lights *CreatedLight = new Lights(line.at(3), stoi(line.at(2)));
+                        CreatedLight->set_name(line.at(1));
+                        home->rooms->at(roomCount)->interactables->push_back(CreatedLight);
+                    }
 
-                if(line.at(0) == "Smart_Speaker")
-                {
-                    Smart_Speaker *CreatedSmart_Speaker = new Smart_Speaker;
-                    CreatedSmart_Speaker->set_name(line.at(1));
-                    CreatedSmart_Speaker->set_state(stoi(line.at(2)));
-                    CreatedSmart_Speaker->set_current_channel(line.at(3));
-                    CreatedSmart_Speaker->set_media_volume(stoi(line.at(4)));
-                    home->rooms->at(roomCount)->interactables->push_back(CreatedSmart_Speaker);
+                    if(line.at(0) == "Door")
+                    {
+                        Door *CreatedDoor = new Door(stoi(line.at(2)));
+                        CreatedDoor->set_name(line.at(1));
+                        home->rooms->at(roomCount)->interactables->push_back(CreatedDoor);
+                    }
+
+                    if(line.at(0) == "AC_Unit")
+                    {
+                        AC_Unit *CreatedAC = new AC_Unit(stof(line.at(3)), stoi(line.at(4)), stoi(line.at(2)));
+                        CreatedAC->set_name(line.at(1));
+                        home->rooms->at(roomCount)->interactables->push_back(CreatedAC);
+                    }
+
+                    if(line.at(0) == "Smart_Television")
+                    {
+                        Smart_Television *CreatedSmart_Television = new Smart_Television(stoi(line.at(5)));
+                        CreatedSmart_Television->set_name(line.at(1));
+                        CreatedSmart_Television->set_state(stoi(line.at(2)));
+                        CreatedSmart_Television->set_current_channel(line.at(3));
+                        CreatedSmart_Television->set_media_volume(stoi(line.at(4)));
+                        home->rooms->at(roomCount)->interactables->push_back(CreatedSmart_Television);
+                    }
+
+                    if(line.at(0) == "Smart_Speaker")
+                    {
+                        Smart_Speaker *CreatedSmart_Speaker = new Smart_Speaker;
+                        CreatedSmart_Speaker->set_name(line.at(1));
+                        CreatedSmart_Speaker->set_state(stoi(line.at(2)));
+                        CreatedSmart_Speaker->set_current_channel(line.at(3));
+                        CreatedSmart_Speaker->set_media_volume(stoi(line.at(4)));
+                        home->rooms->at(roomCount)->interactables->push_back(CreatedSmart_Speaker);
+                    }
                 }
             }
         }
