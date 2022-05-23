@@ -1,0 +1,7 @@
+Room Kitchen
+AC_Unit Air 0 26 0
+Room Office
+Lights Lamp 1 white
+Room Bedroom
+Smart_Television SMTV 0 No signal 3 0
+AC_Unit AC 0 26 0

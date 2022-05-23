@@ -30,13 +30,13 @@ std::string Interactable::get_name(){
 };
 
 //set_state will set the state of an interactable given boolean parameter
-void Interactable::set_state(bool new_state){
+virtual void Interactable::set_state(bool new_state){
     state = new_state;
 
 };
 
 //get_state function will return the state of the interactable
-bool Interactable::get_state(){
+virtual bool Interactable::get_state(){
     return state;
 
 };

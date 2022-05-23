@@ -64,6 +64,9 @@ class Interface
       //lists the rooms in the house or interactables in a room
       int list(vector<string> command);
 
+      void read(string savename);
+      void write(string savename);
+
       //Checks if input is of deisred data type
       bool isInt(string input);
       bool isFloat(string input);

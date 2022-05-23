@@ -86,6 +86,7 @@ bool Interface::runCommand(vector<string> command)
     if(command.at(0) == "remove") {remove(command); return 1;}
     if(command.at(0) == "set") {set(command); return 1;}
     if(command.at(0) == "list") {list(command); return 1;}
+    if(command.at(0) == "write") {write(command.at(1)); return 1;}
 
     //If all opptions exhausted, must not be valid
     else {cout << "\u001b[31;1m"  << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
@@ -160,24 +161,28 @@ int Interface::add(vector<string> command)
         cout << "\u001b[31;1m" << endl;
         cout << "No type to add: \"" << command.at(1) << "\" OR insufficient Command Length to add Interactable device of type: " << command.at(1) << endl;
     }
-
-    //Add Device
-    //gets a pointer to the rooms we want to operate in
-    Room * deviceRoom = findRoom(command.at(3));
-    //If this pointer is null we've got an error
-    if(deviceRoom == nullptr)
-    {
-        cout << "\u001b[31;1m" << endl;
-        cout << "No rooms of name: " << command.at(3) << endl;
-    }
     else
     {
-        //Pass first of all a string dictating the type of object
-        //Pass second the name of the device to create
-        //This will be used to create a device of the required type in the correct room
-        deviceRoom->add_interactable(command.at(1), command.at(2));
-        return 1;
+        //Add Device
+        //gets a pointer to the rooms we want to operate in
+        Room * deviceRoom = findRoom(command.at(3));
+        //If this pointer is null we've got an error
+        if(deviceRoom == nullptr)
+        {
+            cout << "\u001b[31;1m" << endl;
+            cout << "No rooms of name: " << command.at(3) << endl;
+        }
+        else
+        {
+            //Pass first of all a string dictating the type of object
+            //Pass second the name of the device to create
+            //This will be used to create a device of the required type in the correct room
+            deviceRoom->add_interactable(command.at(1), command.at(2));
+            return 1;
+        }
     }
+
+
 
     cout << endl;
     cout << "Follow \"add\" command syntax:" << endl;
@@ -471,6 +476,69 @@ int Interface::set(vector<string> command)
 
     return 0;
 }
+
+void Interface::read(string savename)
+{
+    ifstream inFile(savename + ".txt");
+    if(inFile.good())
+    {
+        inFile.open(savename + ".txt");
+    }
+    else
+    {
+        cout << "No saved home found of name " << savename << "." << endl;
+    }
+}
+
+void Interface::write(string savename)
+{
+    ofstream saveFile;
+    saveFile.open (savename + ".txt");
+
+    for (int i = 0; i < home->rooms->size(); i++)
+    {
+        Room * saveRoom = home->rooms->at(i);
+        saveFile << "Room " << saveRoom->room_name << "\n";
+
+        for (int j = 0; j < saveRoom->interactables->size(); j++)
+        {
+            saveFile << saveRoom->interactables->at(j)->type << " ";
+            if(saveRoom->interactables->at(j)->type == "Lights")
+            {
+                Lights * actor = dynamic_cast<Lights*>(saveRoom->interactables->at(j));
+                saveFile << actor->get_name() << " " << actor->get_state() << " " << actor->get_colour() << "\n";
+            }
+
+            if(saveRoom->interactables->at(j)->type == "Door")
+            {
+                Door * actor = dynamic_cast<Door*>(saveRoom->interactables->at(j));
+                saveFile << actor->get_name() << " " << actor->get_state()  << "\n";
+            }
+
+            if(saveRoom->interactables->at(j)->type == "AC_Unit")
+            {
+                AC_Unit * actor = dynamic_cast<AC_Unit*>(saveRoom->interactables->at(j));
+                saveFile << actor->get_name() << " " << actor->get_state()  << " " << actor->get_AC_temp() << " " << actor->get_AC_speed() << "\n";
+            }
+            if(saveRoom->interactables->at(j)->type == "Smart_Television")
+            {
+                Smart_Television * actor = dynamic_cast<Smart_Television*>(saveRoom->interactables->at(j));
+                saveFile << actor->get_name() << " " << actor->get_state()  << " " << actor->get_current_channel() << " " << actor->get_television_volume() << " " << actor->get_brightness_level() << "\n";
+            }
+            if(saveRoom->interactables->at(j)->type == "Smart_Speaker")
+            {
+                Smart_Speaker * actor = dynamic_cast<Smart_Speaker*>(saveRoom->interactables->at(j));
+                saveFile << actor->get_name() << " " << actor->get_state()  << " " << actor->get_current_audio() << " " << actor->get_speaker_volume() << "\n";
+            }
+        }
+    }
+
+    cout << "Smart Home saved into " << savename << ".txt" << end;
+    saveFile.close();
+}
+
+
+
 
 
 
