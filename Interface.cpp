@@ -532,11 +532,8 @@ void Interface::read(string savename)
                 if(line.at(0) == "AC_Unit")
                 {
                     AC_Unit *CreatedAC = new AC_Unit(stof(line.at(3)), stoi(line.at(4)), stoi(line.at(2)));
-                    cout << "constructor success" << endl;
                     CreatedAC->set_name(line.at(1));
-                    cout << "set name success" << endl;
                     home->rooms->at(roomCount)->interactables->push_back(CreatedAC);
-                    cout << "added to vecotr" << endl;
                 }
 
                 if(line.at(0) == "Smart_Television")
