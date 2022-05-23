@@ -35,11 +35,4 @@ class Members{
 
 };
 
-
-
-
-
-
-
-
 #endif //MEMBERS_H_
