@@ -73,7 +73,7 @@ int Smart_Speaker::get_media_volume(){
     return smart_speaker_volume;
 }
 
-void Smart_Speaker::set_media_channel(std::string new_channel){
+void Smart_Speaker::set_current_channel(std::string new_channel){
     //changing the current channel
     if (state == true){
         current_speaker_channel = new_channel;

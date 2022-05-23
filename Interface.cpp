@@ -86,7 +86,7 @@ bool Interface::runCommand(vector<string> command)
     if(command.at(0) == "remove") {remove(command); return 1;}
     if(command.at(0) == "set") {set(command); return 1;}
     if(command.at(0) == "list") {list(command); return 1;}
-    if(command.at(0) == "write") {write(command.at(1)); return 1;}
+    //if(command.at(0) == "write") {write(command.at(1)); return 1;}
 
     //If all opptions exhausted, must not be valid
     else {cout << "\u001b[31;1m"  << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
@@ -558,7 +558,7 @@ void Interface::read(string savename)
         cout << "No saved home found of name " << savename << "." << endl;
     }
 }
-*/
+
 void Interface::write(string savename)
 {
     ofstream saveFile;
@@ -604,7 +604,7 @@ void Interface::write(string savename)
 
     cout << "Smart Home saved into " << savename << ".txt" << endl;
     saveFile.close();
-}
+}*/
 
 
 
