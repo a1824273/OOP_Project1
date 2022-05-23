@@ -482,7 +482,33 @@ void Interface::read(string savename)
     ifstream inFile(savename + ".txt");
     if(inFile.good())
     {
-        inFile.open(savename + ".txt");
+        string input;
+        //a vector of strings, where each word is an individual element
+        vector<string> line;
+
+        //Gets line entire line from cin and stores it in input
+        getline(cin,input);
+        //some magic
+        istringstream ss(input);
+
+        //the string that will store the individual pieces and push them into the vector
+        string del;
+
+        //reads each word of the input in and spilts it at the delimiter ' '
+        while(getline(ss, del, ' '))
+        {
+          command.push_back(del);
+        }
+
+        //This means it is a room
+        if(line.size() == 2)
+        {
+            home
+        }
+
+
+
+
     }
     else
     {

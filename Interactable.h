@@ -30,7 +30,7 @@ class Interactable {
         virtual void set_state(bool new_state);
 
     //get_state will return the current state of the interactable device
-        bool get_state();
+        virtual bool get_state();
 
     //toggle_state will toggle the state of the interactable object.
         //virtual void toggle_state();
