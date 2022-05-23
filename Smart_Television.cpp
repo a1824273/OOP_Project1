@@ -65,11 +65,12 @@ Smart_Television::Smart_Television(int tv_brightness){
 //inherited functions
 void Smart_Television::set_media_volume(int media_volume_level){
     //changing the televison volume, between 0-100 inclusive
-    if ((the_media_volume_level >= 0 && the_media_volume_level <= 100) && (state == true)){
+    if ((media_volume_level >= 0 && media_volume_level <= 100) && (state == true)){
         smart_television_volume = media_volume_level;
     }
     else{
         smart_television_volume = 0;
+        std::cout << "The volume input is out of range (0-100)!" << std::endl;
     }
     std::cout << "The television is playing at volume " << smart_television_volume << std::endl;
 }
