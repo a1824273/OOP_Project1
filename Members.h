@@ -19,16 +19,16 @@ class Members{
     Members(std::string member_name, bool access_lvl);
 
     //set_name function
-    std::string set_name(std::string Name);
+    void set_name(std::string Name);
 
     //get_name function
-    void get_name();
+    std::string get_name();
 
     //set_access_level function
-    bool set_access_level(bool value);
+    void set_access_level(bool value);
 
     //get_access_level function
-    void get_access_level();
+    bool get_access_level();
 
     //Default Destructor
     ~Members();
