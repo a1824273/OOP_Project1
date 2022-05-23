@@ -529,15 +529,18 @@ void Interface::read(string savename)
 
                 if(line.at(0) == "AC_Unit")
                 {
-                    AC_Unit *CreatedAC = new AC_Unit(line.at(3), line.at(4), line.at(2));
+                    AC_Unit *CreatedAC = new AC_Unit(stof(line.at(3)), stoi(line.at(4)), stoi(line.at(2)));
                     CreatedAC->set_name(line.at(1));
                     findRoom(currentRoom)->interactables->push_back(CreatedAC);
                 }
 
                 if(line.at(0) == "Smart_Television")
                 {
-                    Smart_Television *CreatedSmart_Television = new Smart_Television();
+                    Smart_Television *CreatedSmart_Television = new Smart_Television(line.at(5));
                     CreatedSmart_Television->set_name(line.at(1));
+                    CreatedSmart_Television->set_state(stoi(line.at(2)));
+                    CreatedSmart_Television->set_current_channel(line.at(3));
+                    CreatedSmart_Television->set_media_volume(stoi(line.at(4)));
                     findRoom(currentRoom)->interactables->push_back(CreatedSmart_Television);
                 }
 
@@ -545,6 +548,9 @@ void Interface::read(string savename)
                 {
                     Smart_Speaker *CreatedSmart_Speaker = new Smart_Speaker;
                     CreatedSmart_Speaker->set_name(line.at(1));
+                    CreatedSmart_Speaker->set_state(stoi(line.at(2)));
+                    CreatedSmart_Television->set_current_channel(line.at(3));
+                    CreatedSmart_Television->set_media_volume(stoi(line.at(4)));
                     findRoom(currentRoom)->interactables->push_back(CreatedSmart_Speaker);
                 }
             }
@@ -558,7 +564,7 @@ void Interface::read(string savename)
         cout << "No saved home found of name " << savename << "." << endl;
     }
 }
-
+*/
 void Interface::write(string savename)
 {
     ofstream saveFile;
@@ -592,19 +598,19 @@ void Interface::write(string savename)
             if(saveRoom->interactables->at(j)->type == "Smart_Television")
             {
                 Smart_Television * actor = dynamic_cast<Smart_Television*>(saveRoom->interactables->at(j));
-                saveFile << actor->get_name() << " " << actor->get_state()  << " " << actor->get_current_channel() << " " << actor->get_television_volume() << " " << actor->get_brightness_level() << "\n";
+                saveFile << actor->get_name() << " " << actor->get_state()  << " " << actor->get_current_channel() << " " << actor->get_media_volume() << " " << actor->get_brightness_level() << "\n";
             }
             if(saveRoom->interactables->at(j)->type == "Smart_Speaker")
             {
                 Smart_Speaker * actor = dynamic_cast<Smart_Speaker*>(saveRoom->interactables->at(j));
-                saveFile << actor->get_name() << " " << actor->get_state()  << " " << actor->get_current_audio() << " " << actor->get_speaker_volume() << "\n";
+                saveFile << actor->get_name() << " " << actor->get_state()  << " " << actor->get_current_channel() << " " << actor->get_media_volume() << "\n";
             }
         }
     }
 
     cout << "Smart Home saved into " << savename << ".txt" << endl;
     saveFile.close();
-}*/
+}
 
 
 
