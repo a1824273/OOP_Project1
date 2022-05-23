@@ -7,7 +7,7 @@
 
 class Media_Device: public Interactable {
 protected:
-    bool the_media_state;               //states if the media device is on or off (on is true)
+    bool state;                         //states if the media device is on or off (on is true)
     int the_media_volume_level;         //current volume of media device
     std::string current_channel;        //current channel of media device
 

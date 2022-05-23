@@ -8,15 +8,15 @@
 Smart_Television::Smart_Television(){
     //default media constructor
     type = "Smart_Television";                          //states the type of interactable object
-    the_media_state = false;                            //the volume of the television
+    state = false;                                      //the volume of the television
     current_television_channel = "No signal";           //states the current channel of the television
     smart_television_volume = 3;                        //states if the television is on or off (on is true)
     brightness_level = 0;                               //states the brightness level of the television
     std::cout << "This object is a " << type << std::endl;
-    if (the_media_state == true){
+    if (state == true){
         std::cout << "The smart television is on!" << std::endl;
     }
-    else if(the_media_state == false){
+    else if(state == false){
         std::cout << "The smart television is off!" << std::endl;
     }
     std::cout << "The current television channel is: " << current_television_channel << std::endl;
@@ -28,7 +28,7 @@ Smart_Television::Smart_Television(int tv_brightness){
     //media device constructor with user input
     type = "Smart_Television";
     std::cout << "This object is a " << type << std::endl;
-    if (the_media_state == false){
+    if (state == false){
         current_television_channel = "No signal";
         smart_television_volume = 0;
         brightness_level = 0;
@@ -51,10 +51,10 @@ Smart_Television::Smart_Television(int tv_brightness){
             brightness_level = 0;
         }
     }
-    if (the_media_state == true){
+    if (state == true){
         std::cout << "The smart television is on!" << std::endl;
     }
-    else if(the_media_state == false){
+    else if(state == false){
         std::cout << "The smart television is off!" << std::endl;
     }
     std::cout << "The current television channel is: " << current_television_channel << std::endl;
@@ -65,7 +65,7 @@ Smart_Television::Smart_Television(int tv_brightness){
 //inherited functions
 void Smart_Television::set_media_volume(int media_volume_level){
     //changing the televison volume, between 0-100 inclusive
-    if ((the_media_volume_level >= 0 && the_media_volume_level <= 100) && (the_media_state == true)){
+    if ((the_media_volume_level >= 0 && the_media_volume_level <= 100) && (state == true)){
         smart_television_volume = media_volume_level;
     }
     else{
@@ -82,7 +82,7 @@ int Smart_Television::get_television_volume(){
 //probably can take it from the media device
 void Smart_Television::set_current_channel(std::string new_channel){
     //changing the current channel
-    if (the_media_state == true){
+    if (state == true){
         current_television_channel = new_channel;
     }
     else{
@@ -101,7 +101,7 @@ std::string Smart_Television::get_current_channel(){
 
 void Smart_Television::set_brightness_level(int tv_brightness){
     //changing the brigthness of the televison
-    if ((the_media_state == true) && (tv_brightness >= 0 && tv_brightness <= 5)){
+    if ((state == true) && (tv_brightness >= 0 && tv_brightness <= 5)){
         brightness_level = tv_brightness;
     }
     else{
@@ -118,10 +118,10 @@ int Smart_Television::get_brightness_level(){
 void Smart_Television::print(){
     //printing all current infomation of the smart television
     std::cout << "This object is a " << type << std::endl;
-    if (the_media_state == true){
+    if (state == true){
         std::cout << "The smart television is on!" << std::endl;
     }
-    else if(the_media_state == false){
+    else if(state == false){
         std::cout << "The smart television is off!" << std::endl;
     }
     std::cout << "The current television channel is: " << current_television_channel << std::endl;

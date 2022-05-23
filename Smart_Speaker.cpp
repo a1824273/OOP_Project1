@@ -7,15 +7,15 @@
 Smart_Speaker::Smart_Speaker(){
     //default constructor for smart speaker
     type = "Smart_Speaker";                         //states the type of interactable object
-    the_media_state = false;                        //states if the smart speaker is on or off (on is true)
+    //state = false;                                  //states if the smart speaker is on or off (on is true)
     current_speaker_channel = "No signal";          //states the current channel of the speaker
     smart_speaker_volume = 3;                       //the volume of the smart speaker
     current_audio = "nothing playing";              //states the current audio playing in this speaker
     std::cout << "This object is a " << type << std::endl;
-    if (the_media_state == true){
+    if (state == true){
         std::cout << "The speaker is on!" << std::endl;
     }
-    else if(the_media_state == false){
+    else if(state == false){
         std::cout << "The speaker is off!" << std::endl;
     }
     std::cout << "The speaker is playing: " << current_speaker_channel << std::endl;
@@ -27,7 +27,7 @@ Smart_Speaker::Smart_Speaker(std::string current_speaker_audio){
     //constructor with user input
     type = "Smart_Speaker";
     std::cout << "This object is a " << type << std::endl;
-    if (the_media_state == false){
+    if (state == false){
         current_speaker_channel = "No signal";
         smart_speaker_volume = 0;
         current_audio = "nothing playing";
@@ -44,10 +44,10 @@ Smart_Speaker::Smart_Speaker(std::string current_speaker_audio){
         }
         current_audio = current_speaker_audio;
     }
-    if (the_media_state == true){
+    if (state == true){
         std::cout << "The speaker is on!" << std::endl;
     }
-    else if(the_media_state == false){
+    else if(state == false){
         std::cout << "The speaker is off!" << std::endl;
     }
     std::cout << "The speaker is playing: " << current_speaker_channel << std::endl;
@@ -59,7 +59,7 @@ Smart_Speaker::Smart_Speaker(std::string current_speaker_audio){
 
 void Smart_Speaker::set_media_volume(int media_volume_level){
     //setting the speaker volume, between 0-100 inclusive
-    if ((media_volume_level >= 0 && media_volume_level <= 100) && (the_media_state == true)){
+    if ((media_volume_level >= 0 && media_volume_level <= 100) && (state == true)){
         smart_speaker_volume = media_volume_level;
     }
     else{
@@ -75,7 +75,7 @@ int Smart_Speaker::get_speaker_volume(){
 
 void Smart_Speaker::set_current_channel(std::string new_channel){
     //changing the current channel
-    if (the_media_state == true){
+    if (state == true){
         current_speaker_channel = new_channel;
     }
     else{
@@ -93,7 +93,7 @@ std::string Smart_Speaker::get_current_channel(){
 
 void Smart_Speaker::set_current_audio(std::string current_speaker_audio){
     //setting the current audio
-    if (the_media_state == true){
+    if (state == true){
         current_audio = current_speaker_audio;
     }
     else{
@@ -110,10 +110,10 @@ std::string Smart_Speaker::get_current_audio(){
 void Smart_Speaker::print(){
     //printing all current infomation of the smart speaker
     std::cout << "This object is a " << type << std::endl;
-    if (the_media_state == true){
+    if (state == true){
         std::cout << "The speaker is on!" << std::endl;
     }
-    else if(the_media_state == false){
+    else if(state == false){
         std::cout << "The speaker is off!" << std::endl;
     }
     std::cout << "The speaker is playing: " << current_speaker_channel << std::endl;
