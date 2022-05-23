@@ -35,7 +35,7 @@ AC_Unit::AC_Unit(float original_temp, int AC_fan_speed, bool AC_on){
     }
     std::cout << "The temperature is: " << AC_temperature << std::endl;
     //current fan speed has to be between 1 and 5, both inclusive
-    if ((AC_fan_speed >= 0 && AC_fan_speed <= 5) || (AC_on_or_off == true)){
+    if ((AC_fan_speed >= 1 && AC_fan_speed <= 5) || (AC_on_or_off == true)){
         current_fan_speed = AC_fan_speed;
         std::cout << "The current fan speed is: " << current_fan_speed << std::endl;
     }
