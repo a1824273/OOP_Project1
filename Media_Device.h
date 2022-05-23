@@ -19,10 +19,10 @@ public:
     Media_Device(bool media_state, int media_volume_level, std::string new_channel);
 
     //settin media state
-    void set_media_state(bool media_state);
+    void set_state(bool new_state);
 
     //getting media state
-    bool get_media_state();
+    bool get_state();
 
     //setting media volume level
     //volume is 0-100

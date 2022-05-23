@@ -34,23 +34,23 @@ Media_Device::Media_Device(bool media_state, int media_volume_level, std::string
     std::cout << "The current channel is " << current_channel << std::endl;
 }
 
-void Media_Device::set_media_state(bool media_state){
+void Media_Device::set_state(bool new_state){
     //setting media state
-    state = media_state;
-    if (media_state == true){
+    state = new_state;
+    if (new_state == true){
         std::cout << "The media device is on!" << std::endl;
     }
-    else if(media_state == false){
+    else if(new_state == false){
         std::cout << "The media device is off!" << std::endl;
     }
 }
 
-bool Media_Device::get_media_state(){
+bool Media_Device::get_state(){
     //getting media state
     return state;
 }
 
-    
+
 void Media_Device::set_media_volume(int media_volume_level){
     //setting media volume level
     //volume is 0-100
