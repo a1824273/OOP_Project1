@@ -27,7 +27,7 @@ public:
     void set_media_volume(int media_volume_level);
 
     //getting the speaker volume
-    int get_media_volume();
+    int  get_media_volume();
 
     //changing the current channel
     void set_current_channel(std::string new_channel);

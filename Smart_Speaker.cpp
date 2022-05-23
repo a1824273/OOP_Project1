@@ -41,6 +41,7 @@ Smart_Speaker::Smart_Speaker(std::string current_speaker_audio){
         }
         else{
             smart_speaker_volume = 0;
+            std::cout << "The volume is not in an acceptable range (0 to 100)!" << std::endl;
         }
         current_audio = current_speaker_audio;
     }
@@ -64,11 +65,12 @@ void Smart_Speaker::set_media_volume(int media_volume_level){
     }
     else{
         smart_speaker_volume = 0;
+        std::cout << "The volume is not in an acceptable range (0 to 100)!" << std::endl;
     }
     std::cout << "The speaker volume: " << smart_speaker_volume << std::endl;
 }
 
-int Smart_Speaker::get_media_volume(){
+int Smart_Speaker:: get_media_volume(){
     //getting the speaker volume
     return smart_speaker_volume;
 }
@@ -88,7 +90,6 @@ std::string Smart_Speaker::get_current_channel(){
     //getting the current channel
     return current_speaker_channel;
 }
-
 
 //making the functions specific to this class
 
