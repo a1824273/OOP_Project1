@@ -7,10 +7,11 @@
 #include <iostream>
 #include <vector>
 #include "Home.h"
+#include "Listable.h"
 
 class Home;
 
-class Room{
+class Room : public Listable{
 
     public:
         std::string room_name;                      //Name of the Room
@@ -39,7 +40,7 @@ class Room{
         void remove_interactable(Interactable * interactableToRemove);
 
     //list_interactables will return the list of interactables in a current room
-        void list_interactables();
+        void list();
 
     //print_interactables will print the list of interactables in a current room
         //void print();

@@ -266,14 +266,14 @@ int Interface::list(vector<string> command)
     //Lists the rooms in the house
     if(command.at(1) == "Rooms")
     {
-        home->list_rooms();
+        home->list();
     }
 
     //Lists the devices in the specified room
     else if(findRoom(command.at(1)) != nullptr)
     {
         Room * room_to_list = findRoom(command.at(1));
-        room_to_list->list_interactables();
+        room_to_list->list();
     }
 
     else if((command.size() == 3) && (findRoom(command.at(2)) != nullptr))

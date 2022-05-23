@@ -5,10 +5,11 @@
 #include <iostream>
 #include <vector>
 #include "Room.h"
+#include "Listable.h"
 
 class Room;
 
-class Home{
+class Home : public Listable{
 
     protected:
         std::string home_name;      //Home name
@@ -36,7 +37,7 @@ class Home{
         void remove_room(Room* roomtoRemove);
 
         //list_rooms Function will return the list of rooms in the house
-        void list_rooms();
+        void list();
 
         //Default Destructor
         ~Home();
