@@ -481,7 +481,9 @@ int Interface::set(vector<string> command)
 void Interface::read(string savename)
 {
     ifstream inFile(savename + ".txt");
-    if(inFile.good())
+    string checker;
+    getline(inFile, checker);
+    if(inFile.good() && checker == "Smart Home Save")
     {
         if(home->rooms->size() > 0)
         {
@@ -574,7 +576,8 @@ void Interface::read(string savename)
 void Interface::write(string savename)
 {
     ofstream saveFile;
-    saveFile.open (savename + ".txt");
+    saveFile.open (savename + ".txt", ios::out | ios::trunc);
+    saveFile << "Smart Home Save\n";
 
     for (int i = 0; i < home->rooms->size(); i++)
     {

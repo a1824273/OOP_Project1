@@ -4,8 +4,20 @@ Welcome to DJ's Virtual Smart Home System.
 From here you can control an array of home devices and fixtures we refer to as "Interactables", all through a command line system.
 The system works inside a home, which contains rooms, and these rooms contain the interactables.
 
+Loading in a saved home:
+To load in a saved home, make sure there are no rooms currently in the house. Then use the following syntax:
 
-Getting Started:
+>>> read [home_name]
+
+Saving a Home:
+To save a home, follow the syntax:
+
+>>> write [home_name]
+
+Be warned if a save already exists with that name, it will be overwritten!
+
+
+Getting Started with a new Home:
 	You can't have a smart home without rooms to put them in! To begin then, we must add a room to the home.
 	This is achieved through the 'add' command which follows the syntax:
 
