@@ -86,8 +86,30 @@ bool Interface::runCommand(vector<string> command)
     if(command.at(0) == "remove") {remove(command); return 1;}
     if(command.at(0) == "set") {set(command); return 1;}
     if(command.at(0) == "list") {list(command); return 1;}
-    if(command.at(0) == "write") {write(command.at(1)); return 1;}
-    if(command.at(0) == "read") {read(command.at(1)); return 1;}
+    if(command.at(0) == "write")
+    {
+        if(command.size() == 2){write(command.at(1));}
+        else{
+            cout << "\u001b[31;1m" << endl;
+            cout << "Follow the write command sytax:" << endl;
+            cout << endl;
+            cout << "write [save_name]" << endl;
+            cout << endl;
+        }
+        return 1;
+    }
+    if(command.at(0) == "read")
+    {
+        if(command.size() == 2){read(command.at(1));}
+        else{
+            cout << "\u001b[31;1m" << endl;
+            cout << "Follow the read command sytax:" << endl;
+            cout << endl;
+            cout << "read [save_name]" << endl;
+            cout << endl;
+        }
+        return 1;
+    }
 
     //If all opptions exhausted, must not be valid
     else {cout << "\u001b[31;1m"  << "command \"" << command.at(0) << "\" not recognised" << endl; return 1;}
