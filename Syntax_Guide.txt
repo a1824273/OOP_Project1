@@ -5,16 +5,16 @@ From here you can control an array of home devices and fixtures we refer to as "
 The system works inside a home, which contains rooms, and these rooms contain the interactables.
 
 Loading in a saved home:
-To load in a saved home, make sure there are no rooms currently in the house. Then use the following syntax:
+	To load in a saved home, make sure there are no rooms currently in the house. Then use the following syntax:
 
->>> read [home_name]
+	>>> read [home_name]
 
 Saving a Home:
-To save a home, follow the syntax:
+	To save a home, follow the syntax:
 
->>> write [home_name]
+	>>> write [home_name]
 
-Be warned if a save already exists with that name, it will be overwritten!
+	Be warned if a save already exists with that name, it will be overwritten!
 
 
 Getting Started with a new Home:
