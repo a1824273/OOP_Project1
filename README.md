@@ -1,5 +1,5 @@
 # Welcome to DJ's Virtual Smart Home System.
-(Please navigate to project branch!)
+(Please navigate to project branch!)   
 From here you can control an array of home devices and fixtures we refer to as "Interactables", all through a command line system.
 The system works inside a home, which contains rooms, and these rooms contain the interactables.
 
